@@ -2,3 +2,13 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+
+body {
+  background-color: #33aa85;
+}
+
+.large-size {
+  font-size: large;
+  color: #e0c10c;
+}
+
