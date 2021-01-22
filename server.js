@@ -20,9 +20,14 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Requiring our routes
-require("./routes/html-routes.js")(app);
-require("./routes/api-routes.js")(app);
+// Set Handlebars.
+const exphbs = require('express-handlebars');
+
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
+
+// Import routes and give the server access to them.
+const routes = require('./controllers/travelController.js');
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(() => {
