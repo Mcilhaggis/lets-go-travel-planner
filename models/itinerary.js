@@ -5,21 +5,19 @@ module.exports = (sequelize, DataTypes) => {
   const Itinerary = sequelize.define(
     "Itinerary",
     {
-      //
+      memberId: Sequelize.INTEGER, // MemberId will be used as a foreign key with User.Id to link the two tables
       destination: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      memberId: Sequelize.INTEGER, // MemberId will be used as a foreign key with User.Id to link the two tables
       activityId: Sequelize.INTEGER,
       activityName: Sequelize.STRING,
       restaurantName: Sequelize.STRING,
-      resturantURL: Sequelize.STRING,
+      restaurantURL: Sequelize.STRING,
       restaurantLocation: Sequelize.STRING,
       menuURL: Sequelize.STRING,
       userRating: Sequelize.INTEGER,
-      restaurantPhoto: Sequelize.STRING, // Photo URL
-      restaurantRating: Sequelize.INTEGER
+      restaurantPhoto: Sequelize.STRING // Photo URL
     },
     {
       freezeTableName: true, // Model tableName will be the same as the model name

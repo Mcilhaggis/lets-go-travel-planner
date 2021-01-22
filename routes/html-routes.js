@@ -26,7 +26,6 @@ module.exports = function(app) {
   app.get("/search", isAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, "../public/search.html"));
   });
-  
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/result", isAuthenticated, (req, res) => {
