@@ -74,14 +74,15 @@ module.exports = function(app) {
 // Call Api function from Class 'zomato'
 app.get("/api/restaurants", (req, res) => {
   zomato.getZomatoRestaurant(req.query.city).then(function(result) {
-    // a = result.restaurants.map((o) => o.restaurant.name)
+    console.log(result);
+    a = result.restaurants.map((o) => o.restaurant.name)
     // url = result.restaurants.map((o) => o.restaurant.url)
     // add = result.restaurants.map((o) => o.restaurant.location)
     // menu = result.restaurants.map((o) => o.restaurant.menu_url)
 
-    
+    // console.log(result.restaurants);
     // res.send(a + url  + menu);
-    res.send(result.restaurants);
+    res.send(result);
     
  });
 });
