@@ -39,7 +39,7 @@ router.get("/search", isAuthenticated, (req, res) => {
 // Here we've add our isAuthenticated middleware to this route.
 // If a user who is not logged in tries to access this route they will be redirected to the signup page
 router.get("/result", isAuthenticated, (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/result.html"));
+  // res.sendFile(path.join(__dirname, "../public/result.html"));
   res.render("result");
 });
 
