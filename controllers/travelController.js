@@ -33,13 +33,14 @@ router.get("/login", (req, res) => {
 // Here we've add our isAuthenticated middleware to this route.
 // If a user who is not logged in tries to access this route they will be redirected to the signup page
 router.get("/search", isAuthenticated, (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/search.html"));
-  res.render("search")
+  // res.sendFile(path.join(__dirname, "../public/search.html"));
+  res.render("search");
 });
 // Here we've add our isAuthenticated middleware to this route.
 // If a user who is not logged in tries to access this route they will be redirected to the signup page
 router.get("/result", isAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, "../public/result.html"));
+  res.render("result");
 });
 
 //SIGNUP & LOGIN API ROUTES
@@ -89,8 +90,6 @@ router.get("/api/user_data", (req, res) => {
 });
 
 //ITINERARY API ROUTES - to be included
-
-
 
 // Export routes for server.js to use.
 module.exports = router;
