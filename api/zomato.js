@@ -45,12 +45,12 @@ module.exports = {
 
 //---------------------If you need to call this function from another file--------------//
 // require this file
-const zomato = require("../controllers/zomato");
+// const zomato = require("./zomato");
 
 // testAPI!!!!!!!!!!!!!!!!!
-  const cityParam = 'Winnipeg'
+  // const cityParam = 'Winnipeg'
   
   // Call Api function from Class 'zomato'
-  zomato.getZomatoRestaurant(cityParam).then(function(result) {
-    result.restaurants.map((o) => console.log(o.restaurant.name)) 
- })
+//   zomato.getZomatoRestaurant(cityParam).then(function(result) {
+//     result.restaurants.map((o) => console.log(o.restaurant.name)) 
+//  })

@@ -1,8 +1,11 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+const zomato = require("../api/zomato");
+const amadeus = require("../api/amadeus");
 
-module.exports = function (app) {
+
+module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the search page.
   // Otherwise the user will be sent an error
@@ -46,4 +49,41 @@ module.exports = function (app) {
       });
     }
   });
+
+  // Get Activities from Amadeus API
+  app.get("/api/activity", (req, res) => {
+
+    //Get geo-location
+    amadeus.getActivity(req.query.city).then(function(geocode) {
+      // Get amadeus token
+      amadeus.getTokenActivities().then(function(token) {
+        // Get amadeus Activities 
+        amadeus.getActivityResult(token, geocode).then(function(activities) {
+          
+          res.send(activities.data.slice(0, 3));
+          // slice to get top 3
+          // res = activities.data.slice(0, 3);
+        });
+      });
+    });
+  });
+
+
+
+
+// Call Api function from Class 'zomato'
+app.get("/api/restaurants", (req, res) => {
+  zomato.getZomatoRestaurant(req.query.city).then(function(result) {
+    // a = result.restaurants.map((o) => o.restaurant.name)
+    // url = result.restaurants.map((o) => o.restaurant.url)
+    // add = result.restaurants.map((o) => o.restaurant.location)
+    // menu = result.restaurants.map((o) => o.restaurant.menu_url)
+
+    
+    // res.send(a + url  + menu);
+    res.send(result.restaurants);
+    
+ });
+});
+
 };

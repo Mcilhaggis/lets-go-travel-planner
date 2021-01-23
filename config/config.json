@@ -1,8 +1,9 @@
 {
-    "development": {
+    "development": { 
         "username": "root",
-        "password": "",
-        "database": "project_two",
+        "password": "00000000",
+        "database": "top_songsDB",
+        "port": 3306,
         "host": "127.0.0.1",
         "dialect": "mysql"
     },
