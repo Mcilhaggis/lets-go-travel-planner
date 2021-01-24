@@ -1,19 +1,21 @@
-$(document).ready(() => {
+//All the code below is for Testing, It won't be needed for handelbars
 
-  function getActivityResultAPI(city) {
-    $.get("/api/activity", {city: city})
-    .then((data) => {
-      console.log(data);
-    });
-  }
+// $(document).ready(() => {
 
-  function getRestaurantAPI(city) {
-    $.get("/api/restaurants", {city: city})
-    .then((data) => {
-      console.log(data);
-    });
-  }
+//   function getActivityResultAPI(city) {
+//     $.get("/api/activity", {city: city})
+//     .then((data) => {
+//       console.log(data);
+//     });
+//   }
 
-  getRestaurantAPI('New York');
-  getActivityResultAPI('New York');
-});
+//   function getRestaurantAPI(city) {
+//     $.get("/api/restaurants", {city: city})
+//     .then((data) => {
+//       console.log(data);
+//     });
+//   }
+
+//   getRestaurantAPI('New York');
+//   getActivityResultAPI('New York');
+// });

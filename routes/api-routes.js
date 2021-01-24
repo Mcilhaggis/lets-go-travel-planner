@@ -4,7 +4,6 @@ const passport = require("../config/passport");
 const zomato = require("../api/zomato");
 const amadeus = require("../api/amadeus");
 
-
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the search page.
@@ -52,39 +51,59 @@ module.exports = function(app) {
 
   // Get Activities from Amadeus API
   app.get("/api/activity", (req, res) => {
-
     //Get geo-location
     amadeus.getActivity(req.query.city).then(function(geocode) {
       // Get amadeus token
       amadeus.getTokenActivities().then(function(token) {
-        // Get amadeus Activities 
+        // Get amadeus Activities
         amadeus.getActivityResult(token, geocode).then(function(activities) {
-          
-          res.send(activities.data.slice(0, 3));
-          // slice to get top 3
-          // res = activities.data.slice(0, 3);
+          let act = activities.data.slice(0, 3);
+          // console.log(act);
+          let allActivities = {
+            activities: act.map((o) => [
+              (Activity = {
+                name: o.name,
+                description: o.shortDescription,
+                rating: o.rating,
+                price: o.price.amount,
+                photo: o.pictures[0],
+              }),
+            ]),
+          };
+          console.log(allActivities);
+          //For Testing
+          res.send(allActivities);
+
+          // // ==== PREPARED FOR HANDLEBARS=====
+          // res.render('result', {allRestaurnt});
         });
       });
     });
   });
 
+  // Call Api function from Class 'zomato'
+  app.get("/api/restaurants", (req, res) => {
+    zomato.getZomatoRestaurant(req.query.city).then(function(result) {
+      // console.log(result);
+      let allRestaurnt = {
+        restaurants: result.restaurants.map((o) => [
+          (restaurant = {
+            name: o.restaurant.name,
+            url: o.restaurant.url,
+            address: o.restaurant.location.address,
+            rating: o.restaurant.all_reviews.rating,
+            menu: o.restaurant.menu_url,
+            phone: o.restaurant.phone_numbers,
+            photos: o.restaurant.photos_url,
+          }),
+        ]),
+      };
 
+      // ==== TESTING ON result.js ====
+      res.send(allRestaurnt);
 
-
-// Call Api function from Class 'zomato'
-app.get("/api/restaurants", (req, res) => {
-  zomato.getZomatoRestaurant(req.query.city).then(function(result) {
-    console.log(result);
-    a = result.restaurants.map((o) => o.restaurant.name)
-    // url = result.restaurants.map((o) => o.restaurant.url)
-    // add = result.restaurants.map((o) => o.restaurant.location)
-    // menu = result.restaurants.map((o) => o.restaurant.menu_url)
-
-    // console.log(result.restaurants);
-    // res.send(a + url  + menu);
-    res.send(result);
-    
- });
-});
-
+      // // ==== PREPARED FOR HANDLE_BAR=====
+      // res.render('result', {allRestaurnt});
+    });
+  });
 };
