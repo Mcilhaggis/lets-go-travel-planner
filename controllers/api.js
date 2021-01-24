@@ -1,8 +1,8 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
-const zomato = require("../api/zomato");
-const amadeus = require("../api/amadeus");
+const zomato = require("../controllers/zomato");
+const amadeus = require("../controllers/amadeus");
 
 module.exports = function(app) {
     // Get Activities from Amadeus API
@@ -31,7 +31,7 @@ module.exports = function(app) {
                     res.send(allActivities);
 
                     // // ==== PREPARED FOR HANDLEBARS=====
-                    // res.render('result', {allRestaurnt});
+                    // res.render('result', {allActivities});
                 });
             });
         });
