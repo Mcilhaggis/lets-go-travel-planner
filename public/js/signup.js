@@ -36,7 +36,7 @@ $(document).ready(() => {
     }
 
     function handleLoginErr(err) {
-        $("#alert .msg").text(err.responseJSON);
+        $("#alert .msg").text("Sign-up unsuccessful, please try again");
         $("#alert").fadeIn(500);
     }
 });
