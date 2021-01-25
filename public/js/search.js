@@ -21,7 +21,6 @@ $(document).ready(() => {
     event.preventDefault();
     const cityName = ca.value.trim();
     console.log(ca.value.trim());
-    console.log("aaaaaa");
     getRestaurantAPI(cityName);
     getActivityResultAPI(cityName);
   });
