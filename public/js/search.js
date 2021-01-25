@@ -15,6 +15,8 @@ $(document).ready(() => {
                 const activitiesImage = document.createElement('img');
                 activitiesImage.src = data.activities[i][0].photo;
                 activitiesResults.appendChild(activitiesImage);
+                activitiesImage.style.height = "auto";
+                activitiesImage.style.width = "200px";
             }
         });
     }
@@ -34,7 +36,11 @@ $(document).ready(() => {
                 restaurantsImage.title = "my title text";
                 restaurantsImage.href = data.restaurants[i][0].photos;
                 restaurantsImage.target = "_blank";
+                restaurantsImage.style.height = "auto";
+                restaurantsImage.style.width = "200px";
                 document.getElementById("restaurantsResults").appendChild(restaurantsImage);
+                // Save button that links to the database
+
 
             }
         });
