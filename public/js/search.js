@@ -1,3 +1,4 @@
+
 $(document).ready(() => {
 
     const restaurantsResults = document.getElementById("restaurantsResults");
@@ -11,7 +12,7 @@ $(document).ready(() => {
                 const activitiesName = document.createElement("h2");
                 activitiesResults.appendChild(activitiesName);
                 activitiesName.textContent = data.activities[i][0].name;
-
+                
                 // view activity photo
                 const activitiesImage = document.createElement('img');
                 activitiesImage.src = data.activities[i][0].photo;
@@ -25,11 +26,19 @@ $(document).ready(() => {
                 activitiesDescription.textContent = data.activities[i][0].description;
                 activitiesImage.style.margin = "15px";
                 activitiesResults.appendChild(activitiesDescription);
+                
+                //view URL for activity  - NEEDS URL FROM API ADDED
+                const activitySite = document.createElement('a');
+                activitySite.href = data.activities[i][0].website;
+                activitySite.textContent = data.activities[i][0].name + " website";
+                activitySite.target = "_blank"
+                activitiesResults.appendChild(activitySite);
 
                 //save button to connect to database
                 const activitySaveBtn = document.createElement('button');
                 activitySaveBtn.innerHTML = "SAVE";
                 activitiesResults.appendChild(activitySaveBtn);
+                
 
                 //horizontal rule to seperate results
                 const hr = document.createElement('hr')
@@ -37,7 +46,7 @@ $(document).ready(() => {
             }
         });
     }
-
+    
     function getRestaurantAPI(city) {
         $.get("/api/restaurants", { city: city }).then((data) => {
             console.log(data);
@@ -75,13 +84,14 @@ $(document).ready(() => {
                 const restaurantPhone = document.createElement('p');
                 restaurantPhone.textContent = "Phone: " + data.restaurants[i][0].phone;
                 restaurantsResults.appendChild(restaurantPhone);
-               
+                
                 //view URL for restuarant  
                 const restaurantSite = document.createElement('a');
                 restaurantSite.href = data.restaurants[i][0].url;
                 restaurantSite.textContent = data.restaurants[i][0].name + " website";
                 restaurantSite.target = "_blank"
                 restaurantsResults.appendChild(restaurantSite);
+
                
                 // Save button that links to the database
                 const restaurantSaveBtn = document.createElement('button');
@@ -89,8 +99,7 @@ $(document).ready(() => {
                 restaurantsResults.appendChild(restaurantSaveBtn);
 
                 //horizontal rule to seperate results
-                const br = document.createElement('br')
-                restaurantsResults.appendChild(br)
+
                 const hr = document.createElement('hr')
                 restaurantsResults.appendChild(hr)
 
@@ -127,12 +136,6 @@ $(document).ready(() => {
     // // });
 
 
-// MODAL TRIGGER FUCNTIUONALITY
-
-$('#view-itinerary').on('click', function () {
-  console.log("I've been clicked");
-  $('#exampleModalLong').trigger('focus')
-})
 
 
 });

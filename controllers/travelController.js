@@ -150,7 +150,6 @@ router.get("/api/restaurants", (req, res) => {
             review: o.restaurant.all_reviews.review_text,
             menu: o.restaurant.menu_url,
             phone: o.restaurant.phone_numbers,
-            // photos: o.restaurant.photos_url,
             photos: o.restaurant.featured_image,
           }),
         ]),
@@ -184,6 +183,7 @@ router.get("/api/activity", (req, res) => {
               rating: o.rating,
               price: o.price.amount,
               photo: o.pictures[0],
+              website: o.bookingLink
             }),
           ]),
         };
