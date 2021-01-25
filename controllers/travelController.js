@@ -10,7 +10,6 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 const passport = require("../config/passport");
 
-
 // Requiring our models and passport as we've configured it
 const zomato = require("../controllers/zomato");
 const amadeus = require("../controllers/amadeus");
@@ -41,8 +40,6 @@ router.get("/search", isAuthenticated, (req, res) => {
   // res.sendFile(path.join(__dirname, "../public/search.html"));
   res.render("search");
 });
-
-
 
 // Here we've add our isAuthenticated middleware to this route.
 // If a user who is not logged in tries to access this route they will be redirected to the signup page
@@ -105,8 +102,8 @@ router.get("/api/itinerary", (req, res) => {
   // findAll returns all entries for a table when used with no options
   db.Itinerary.findAll({
     where: {
-      memberID: "test" // not test but equal to the users ID from login
-    }
+      memberID: "test", // not test but equal to the users ID from login
+    },
   }).then((result) => res.json(result));
 });
 
@@ -126,81 +123,76 @@ router.post("/api/itinerary", (req, res) => {
     restaurantPhoto: "test",
     restaurantLocation: "test",
     menuURL: "test",
-    userRating: "test"
-  }).then(result => res.json(result)); // result may not be the right name for
+    userRating: "test",
+  }).then((result) => res.json(result)); // result may not be the right name for
 });
 // Deleting a previously saved item
 router.delete("/api/itinerary/:activityId", (req, res) => {
   // We just have to specify which itinerary item we want to destroy with "where"
   db.Itinerary.destroy({
     where: {
-      id: req.params.activityId // we get this value from a click on a button of the item it's attached to
-    }
-  }).then(result => res.json(result));
+      id: req.params.activityId, // we get this value from a click on a button of the item it's attached to
+    },
+  }).then((result) => res.json(result));
 });
 
-
-
-
-
-
-
- // Call Api function from Class 'zomato'
- router.get("/api/restaurants", (req, res) => {
-  zomato.getZomatoRestaurant(req.query.city).then(result => {
-      let allRestaurnt = ({
-          restaurants: result.restaurants.map((o) => [
-              (restaurant = {
-                  name: o.restaurant.name,
-                  url: o.restaurant.url,
-                  address: o.restaurant.location.address,
-                  rating: o.restaurant.all_reviews.rating,
-                  menu: o.restaurant.menu_url,
-                  phone: o.restaurant.phone_numbers,
-                  photos: o.restaurant.photos_url,
-              }),
-          ]),
-      });
+// Call Api function from Class 'zomato'
+router.get("/api/restaurants", (req, res) => {
+  zomato.getZomatoCityId(req.query.city).then(function(cityId) {
+    zomato.getZomatoRestaurant(cityId).then((result) => {
+      let allRestaurnt = {
+        restaurants: result.restaurants.map((o) => [
+          (restaurant = {
+            name: o.restaurant.name,
+            url: o.restaurant.url,
+            address: o.restaurant.location.address,
+            rating: o.restaurant.all_reviews.rating,
+            menu: o.restaurant.menu_url,
+            phone: o.restaurant.phone_numbers,
+            photos: o.restaurant.photos_url,
+          }),
+        ]),
+      };
 
       // ==== TESTING ON result.js ====
-      console.log(allRestaurnt.restaurants);
+      // console.log(allRestaurnt.restaurants);
       res.json(allRestaurnt);
 
       // // ==== PREPARED FOR HANDLE_BAR=====
       // res.render('search', {allRestaurnt});
+    });
   });
 });
-
 
 // Get Activities from Amadeus API
 router.get("/api/activity", (req, res) => {
   //Get geo-location
   amadeus.getActivity(req.query.city).then(function(geocode) {
-      // Get amadeus token
-      amadeus.getTokenActivities().then(function(token) {
-          // Get amadeus Activities
-          amadeus.getActivityResult(token, geocode).then(function(activities) {
-              let act = activities.data.slice(0, 3);
-              // console.log(act);
-              let allActivities = {
-                  activities: act.map((o) => [
-                      (Activity = {
-                          name: o.name,
-                          description: o.shortDescription,
-                          rating: o.rating,
-                          price: o.price.amount,
-                          photo: o.pictures[0],
-                      }),
-                  ]),
-              };
-              // console.log(allActivities);
-              //For Testing
-              res.send(allActivities);
+    // Get amadeus token
+    amadeus.getTokenActivities().then(function(token) {
+      // Get amadeus Activities
+      amadeus.getActivityResult(token, geocode).then(function(activities) {
+        let act = activities.data.slice(0, 3);
+        // console.log(act);
+        let allActivities = {
+          activities: act.map((o) => [
+            (Activity = {
+              name: o.name,
+              description: o.shortDescription,
+              rating: o.rating,
+              price: o.price.amount,
+              photo: o.pictures[0],
+            }),
+          ]),
+        };
+        // console.log(allActivities);
+        //For Testing
+        res.send(allActivities);
 
-              // // ==== PREPARED FOR HANDLEBARS=====
-              // res.render('result', {allActivities});
-          });
+        // // ==== PREPARED FOR HANDLEBARS=====
+        // res.render('result', {allActivities});
       });
+    });
   });
 });
 
