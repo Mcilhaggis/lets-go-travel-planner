@@ -1,7 +1,16 @@
 $(document).ready(() => {
+
+  const restaurantsResults = document.getElementById("restaurantsResults");
+  const activitiesResults = document.getElementById("activitiesResults");
+
   function getActivityResultAPI(city) {
     $.get("/api/activity", { city: city }).then((data) => {
       console.log(data);
+      for (let i = 0; i < data.activities.length; i++) {
+        const activitiesName = document.createElement ("h2");
+        activitiesResults.appendChild(activitiesName);
+        activitiesName.textContent = data.activities[i][0].name;
+        }
       //put data into your page;
     });
   }
@@ -9,6 +18,16 @@ $(document).ready(() => {
   function getRestaurantAPI(city) {
     $.get("/api/restaurants", { city: city }).then((data) => {
       console.log(data);
+      for (let i = 0; i < data.restaurants.length; i++) {
+      const restaurantsName = document.createElement ("h1");
+      restaurantsResults.appendChild(restaurantsName);
+      restaurantsName.textContent = data.restaurants[i][0].name;
+      }
+      for (let i = 0; i < data.restaurants.length; i++) {
+        const restaurantsAdress = document.createElement ("h1");
+        restaurantsResults.appendChild(restaurantsAdress);
+        restaurantsAdress.textContent = data.restaurants[i][0].address;
+        }
       //put data into your page;
     });
   }
