@@ -17,6 +17,10 @@ $(document).ready(() => {
                 activitiesResults.appendChild(activitiesImage);
                 activitiesImage.style.height = "auto";
                 activitiesImage.style.width = "200px";
+                //save button to connect to database
+                const activitySaveBtn = document.createElement('button');
+                activitySaveBtn.innerHTML = "SAVE";
+                activitiesResults.appendChild(activitySaveBtn);
             }
         });
     }
@@ -40,6 +44,9 @@ $(document).ready(() => {
                 restaurantsImage.style.width = "200px";
                 document.getElementById("restaurantsResults").appendChild(restaurantsImage);
                 // Save button that links to the database
+                const restaurantSaveBtn = document.createElement('button');
+                restaurantSaveBtn.innerHTML = "SAVE";
+                restaurantsResults.appendChild(restaurantSaveBtn);
 
 
             }
