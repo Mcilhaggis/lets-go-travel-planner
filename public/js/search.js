@@ -7,18 +7,18 @@ $(document).ready(() => {
     // setTimeout(console.log(test), 1000)
     // console.log(test)
 
-    getUserData();
+    // getUserData();
 
-    function getUserData() {
-        let userId;
-        $.get("/api/user_data").then((data) => {
-            console.log(data)
-            userId = data.id;
-            console.log(userId)
+    // function getUserData() {
+    //     let userId;
+    //     $.get("/api/user_data").then((data) => {
+    //         console.log(data)
+    //         userId = data.id;
+    //         console.log(userId)
 
-        })
-        return userId
-    };
+    //     })
+    //     return userId
+    // };
     // async await
     // pass id through url if we cannot figure this out
     // parse url and take off id, set to variable and use that
@@ -55,6 +55,7 @@ $(document).ready(() => {
 
                 //save button to connect to database
                 const activitySaveBtn = document.createElement('button');
+                activitySaveBtn.className = "save btn btn-primary";
                 activitySaveBtn.innerHTML = "SAVE";
                 activitiesResults.appendChild(activitySaveBtn);
 
@@ -74,6 +75,7 @@ $(document).ready(() => {
                 const restaurantsName = document.createElement("h2");
                 restaurantsResults.appendChild(restaurantsName);
                 restaurantsName.textContent = data.restaurants[i][0].name;
+
                 // clickable link to take user to zomato restaurant photos page
                 const restaurantsImage = document.createElement('img');
                 const linkText = document.createTextNode("view photos");
@@ -114,6 +116,7 @@ $(document).ready(() => {
 
                 // Save button that links to the database
                 const restaurantSaveBtn = document.createElement('button');
+                restaurantSaveBtn.className = "save btn btn-primary";
                 restaurantSaveBtn.innerHTML = "SAVE";
                 restaurantsResults.appendChild(restaurantSaveBtn);
 
