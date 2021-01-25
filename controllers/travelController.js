@@ -48,11 +48,6 @@ router.get("/result", isAuthenticated, (req, res) => {
   res.render("result");
 });
 
-router.get("/logout", (req, res) => {
-  req.logout();
-  res.redirect("/login");
-});
-
 //SIGNUP & LOGIN API ROUTES
 
 // Using the passport.authenticate middleware with our local strategy.
@@ -152,9 +147,11 @@ router.get("/api/restaurants", (req, res) => {
             url: o.restaurant.url,
             address: o.restaurant.location.address,
             rating: o.restaurant.all_reviews.rating,
+            review: o.restaurant.all_reviews.review_text,
             menu: o.restaurant.menu_url,
             phone: o.restaurant.phone_numbers,
-            photos: o.restaurant.photos_url,
+            // photos: o.restaurant.photos_url,
+            photos: o.restaurant.featured_image,
           }),
         ]),
       };

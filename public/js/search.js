@@ -43,19 +43,51 @@ $(document).ready(() => {
                 restaurantsResults.appendChild(restaurantsName);
                 restaurantsName.textContent = data.restaurants[i][0].name;
                 // clickable link to take user to zomato restaurant photos page
-                const restaurantsImage = document.createElement('a');
+                const restaurantsImage = document.createElement('img');
                 const linkText = document.createTextNode("view photos");
                 restaurantsImage.appendChild(linkText);
                 restaurantsImage.title = "my title text";
-                restaurantsImage.href = data.restaurants[i][0].photos;
+                restaurantsImage.src = data.restaurants[i][0].photos;
                 restaurantsImage.target = "_blank";
                 restaurantsImage.style.height = "auto";
                 restaurantsImage.style.width = "200px";
+                restaurantsImage.style.float = "left";
+                restaurantsImage.style.marginRight = "15px";
+
+
                 document.getElementById("restaurantsResults").appendChild(restaurantsImage);
+                
+                //view review for restuarant
+                // const restaurantReview = document.createElement('p');
+                // restaurantReview.textContent = data.restaurant[i][0].reviews[0];
+                // restaurantsResults.appendChild(restaurantReview);
+              
+                //view address for restuarant  
+                const restaurantAddress = document.createElement('p');
+                restaurantAddress.textContent = "Address: " + data.restaurants[i][0].address;
+                restaurantsResults.appendChild(restaurantAddress);
+              
+                //view phone number for restuarant  
+                const restaurantPhone = document.createElement('p');
+                restaurantPhone.textContent = "Phone: " + data.restaurants[i][0].phone;
+                restaurantsResults.appendChild(restaurantPhone);
+               
+                //view URL for restuarant  
+                const restaurantSite = document.createElement('a');
+                restaurantSite.href = data.restaurants[i][0].url;
+                restaurantSite.textContent = data.restaurants[i][0].name + " website";
+                restaurantsResults.appendChild(restaurantSite);
+               
                 // Save button that links to the database
                 const restaurantSaveBtn = document.createElement('button');
                 restaurantSaveBtn.innerHTML = "SAVE";
                 restaurantsResults.appendChild(restaurantSaveBtn);
+
+                //horizontal rule to seperate results
+                const br = document.createElement('br')
+                restaurantsResults.appendChild(br)
+                const hr = document.createElement('hr')
+                restaurantsResults.appendChild(hr)
 
 
             }
@@ -88,4 +120,14 @@ $(document).ready(() => {
     // //   //Empty the search bar once search submitted
     // //   ca.val("");
     // // });
+
+
+// MODAL TRIGGER FUCNTIUONALITY
+
+$('#view-itinerary').on('click', function () {
+  console.log("I've been clicked");
+  $('#exampleModalLong').trigger('focus')
+})
+
+
 });
