@@ -118,7 +118,7 @@ router.post("/api/itinerary", (req, res) => {
         activityImageURL: "test",
         activityName: "test",
         activityDescription: "test",
-        restaurantName: "test",
+        restaurantName: req.body.rName,
         restaurantDescription: "test",
         restaurantPhoto: "test",
         restaurantLocation: "test",
