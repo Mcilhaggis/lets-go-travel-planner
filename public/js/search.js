@@ -15,6 +15,21 @@ $(document).ready(() => {
                 const activitiesImage = document.createElement('img');
                 activitiesImage.src = data.activities[i][0].photo;
                 activitiesResults.appendChild(activitiesImage);
+                activitiesImage.style.height = "auto";
+                activitiesImage.style.width = "200px";
+                activitiesImage.style.float = "left";
+                //view activity description
+                const activitiesDescription = document.createElement('p');
+                activitiesDescription.textContent = data.activities[i][0].description;
+                activitiesImage.style.margin = "15px";
+                activitiesResults.appendChild(activitiesDescription);
+                //save button to connect to database
+                const activitySaveBtn = document.createElement('button');
+                activitySaveBtn.innerHTML = "SAVE";
+                activitiesResults.appendChild(activitySaveBtn);
+                //horizontal rule to seperate results
+                const hr = document.createElement('hr')
+                activitiesResults.appendChild(hr)
             }
         });
     }
@@ -34,7 +49,14 @@ $(document).ready(() => {
                 restaurantsImage.title = "my title text";
                 restaurantsImage.href = data.restaurants[i][0].photos;
                 restaurantsImage.target = "_blank";
+                restaurantsImage.style.height = "auto";
+                restaurantsImage.style.width = "200px";
                 document.getElementById("restaurantsResults").appendChild(restaurantsImage);
+                // Save button that links to the database
+                const restaurantSaveBtn = document.createElement('button');
+                restaurantSaveBtn.innerHTML = "SAVE";
+                restaurantsResults.appendChild(restaurantSaveBtn);
+
 
             }
         });
@@ -46,6 +68,10 @@ $(document).ready(() => {
         console.log(ca.value.trim());
         getRestaurantAPI(cityName);
         getActivityResultAPI(cityName);
+        $("#ca").val('');
+        activitiesResults.innerHTML = '';
+        restaurantsResults.innerHTML = '';
+
     });
 
     // // When the form is submitted, we validate there's an email and password entered
