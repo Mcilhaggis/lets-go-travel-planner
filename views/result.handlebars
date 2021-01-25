@@ -1,15 +1,47 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Let's Go Travel Planner</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-auto">
+        <a class="nav-link" href="./logout">Sign Out</a>
+      </div>
+    </div>
+  </div>
+</nav>
 
-<a href="www.pizza.com">pizzeria</a><button class="pizza">See More</button>
-<a href="ww.sushi.com">sushi</a><button class="sushi">See More</button>
-<a href="www.mcdonalds.com">mcdonalds</a><button class="mcdonalds">See More</button>
+<section class="container my-5">
+  <div class="row">
+    {{!-- Restaurant Column --}}
+    <div class="col my-5 mx-3 border border-dark rounded-lg">
+      <h3 class="text-center font-weight-bold my-3">Restaurant</h3>
+      <ul class="my-5">
 
-
-
+        <li class="my-3">McDonalds <button type="submit" class="text-center">View</button></li>
+        <li class="my-3">Pizza Hut <button type="submit" class="text-center">View</button></li>
+        <li class="my-3">KFC <button type="submit" class="text-center">View</button></li>
+      </ul>
+    </div>
+    {{!-- Activity Column --}}
+    <div class="col my-5 mx-3 border border-dark rounded-lg">
+      <h3 class="text-center font-weight-bold my-3">Activity</h3>
+      <ul class="my-5">
+        <li class="my-3">Niagara Falls <button type="submit" class="text-center">View</button></li>
+        <li class="my-3">CN Tower <button type="submit" class="text-center">View</button></li>
+        <li class="my-3">Casino <button type="submit" class="text-center">View</button></li>
+      </ul>
+    </div>
+  </div>
+</section>
 
 
 {{!-- MODAL ELEMENT --}}
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+{{!-- <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -27,6 +59,4 @@
       </div>
     </div>
   </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</div> --}}
