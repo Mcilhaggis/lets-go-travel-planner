@@ -48,6 +48,11 @@ router.get("/result", isAuthenticated, (req, res) => {
   res.render("result");
 });
 
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/login");
+});
+
 //SIGNUP & LOGIN API ROUTES
 
 // Using the passport.authenticate middleware with our local strategy.
