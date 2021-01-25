@@ -47,6 +47,8 @@ $(document).ready(() => {
         getRestaurantAPI(cityName);
         getActivityResultAPI(cityName);
         $("#ca").val('');
+        activitiesResults.innerHTML = '';
+        restaurantsResults.innerHTML = '';
 
     });
 
