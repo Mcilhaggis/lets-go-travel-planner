@@ -17,10 +17,19 @@ $(document).ready(() => {
                 activitiesResults.appendChild(activitiesImage);
                 activitiesImage.style.height = "auto";
                 activitiesImage.style.width = "200px";
+                activitiesImage.style.float = "left";
+                //view activity description
+                const activitiesDescription = document.createElement('p');
+                activitiesDescription.textContent = data.activities[i][0].description;
+                activitiesImage.style.margin = "15px";
+                activitiesResults.appendChild(activitiesDescription);
                 //save button to connect to database
                 const activitySaveBtn = document.createElement('button');
                 activitySaveBtn.innerHTML = "SAVE";
                 activitiesResults.appendChild(activitySaveBtn);
+                //horizontal rule to seperate results
+                const hr = document.createElement('hr')
+                activitiesResults.appendChild(hr)
             }
         });
     }
