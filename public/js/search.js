@@ -11,6 +11,7 @@ $(document).ready(() => {
                 const activitiesName = document.createElement("h2");
                 activitiesResults.appendChild(activitiesName);
                 activitiesName.textContent = data.activities[i][0].name;
+
                 // view activity photo
                 const activitiesImage = document.createElement('img');
                 activitiesImage.src = data.activities[i][0].photo;
@@ -18,15 +19,18 @@ $(document).ready(() => {
                 activitiesImage.style.height = "auto";
                 activitiesImage.style.width = "200px";
                 activitiesImage.style.float = "left";
+
                 //view activity description
                 const activitiesDescription = document.createElement('p');
                 activitiesDescription.textContent = data.activities[i][0].description;
                 activitiesImage.style.margin = "15px";
                 activitiesResults.appendChild(activitiesDescription);
+
                 //save button to connect to database
                 const activitySaveBtn = document.createElement('button');
                 activitySaveBtn.innerHTML = "SAVE";
                 activitiesResults.appendChild(activitySaveBtn);
+
                 //horizontal rule to seperate results
                 const hr = document.createElement('hr')
                 activitiesResults.appendChild(hr)
@@ -76,6 +80,7 @@ $(document).ready(() => {
                 const restaurantSite = document.createElement('a');
                 restaurantSite.href = data.restaurants[i][0].url;
                 restaurantSite.textContent = data.restaurants[i][0].name + " website";
+                restaurantSite.target = "_blank"
                 restaurantsResults.appendChild(restaurantSite);
                
                 // Save button that links to the database
