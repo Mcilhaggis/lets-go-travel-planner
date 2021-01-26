@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     const Itinerary = sequelize.define(
         "Itinerary", {
             memberId: Sequelize.INTEGER, // MemberId will be used as a foreign key with User.Id to link the two tables
+
             destination: {
                 type: DataTypes.STRING,
                 allowNull: false
