@@ -93,19 +93,28 @@ router.post("/api/itinerary", (req, res) => {
     console.log(req.body);
     // Create takes an argument of an object describing the item we want to
     // Insert into our table. We pass in an object with a text and complete property.
-    db.Itinerary.create({
-        memberId: req.user.id, //this may come from a different place than the rest - referring to the user that is currently logged in
+    //If the item is already in there with a matching restaurant name the item will not be created
+     db.Itinerary.findOrCreate({
+        where: {
+            restaurantName: req.body.restaurantName
+        },
+        defaults: {
+        memberId: req.user.id, 
         destination: req.body.destination,
-        // activityPhoto: "test",
-        // activityName: "test",
-        // activityDescription: "test",
         restaurantWebsite: req.body.restaurantWebsite,
         restaurantName: req.body.restaurantName,
         restaurantAddress: req.body.restaurantAddress,
         restaurantPhone: req.body.restaurantPhone,
-        restaurantPhoto: req.body.restaurantPhoto,
-    }).then((result) => res.json(result)); // result may not be the right name for
+        restaurantPhoto: req.body.restaurantPhoto
+        },
+    })
+    .then(async ([result, created]) => {
+    if (!created) {
+        console.log("You added this already")
+    }
 });
+});
+
 // Deleting a previously saved item
 router.delete("/api/itinerary/:activityId", (req, res) => {
     // We just have to specify which itinerary item we want to destroy with "where"
