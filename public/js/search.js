@@ -117,9 +117,12 @@ $(document).ready(() => {
             }
         });
     }
+
+    let cityName;
+
     $("#create-form").on("submit", event => {
         event.preventDefault();
-        const cityName = ca.value.trim();
+        cityName = ca.value.trim();
         console.log(ca.value.trim());
         getRestaurantAPI(cityName);
         getActivityResultAPI(cityName);
@@ -135,7 +138,9 @@ $(document).ready(() => {
         var restaurantWebsite = document.querySelector(`#restaurant-website-${event.target.dataset.idTarget}`).href
         var restaurantPhoto = document.querySelector(`#restaurant-photo-${event.target.dataset.idTarget}`).src
         console.log(restaurantName)
+        
         const itineraryData = {
+            destination: cityName,
             restaurantName: restaurantName,
             restaurantAddress: restaurantAddress,
             restaurantPhone: restaurantPhone,

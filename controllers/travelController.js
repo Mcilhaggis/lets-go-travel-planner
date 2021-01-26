@@ -95,7 +95,7 @@ router.post("/api/itinerary", (req, res) => {
     // Insert into our table. We pass in an object with a text and complete property.
     db.Itinerary.create({
         memberId: req.user.id, //this may come from a different place than the rest - referring to the user that is currently logged in
-        // destinationName: "test",
+        destination: req.body.destination,
         // activityPhoto: "test",
         // activityName: "test",
         // activityDescription: "test",
