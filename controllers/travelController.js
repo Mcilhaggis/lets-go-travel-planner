@@ -136,65 +136,88 @@ router.delete("/api/itinerary/:activityId", (req, res) => {
     }).then((result) => res.json(result));
 });
 
+const resId = [];
 // Call Api function from Class 'zomato'
 router.get("/api/restaurants", (req, res) => {
-    zomato.getZomatoCityId(req.query.city).then(function(cityId) {
-        zomato.getZomatoRestaurant(cityId).then((result) => {
-            let allRestaurnt = {
-                restaurants: result.restaurants.map((o) => [
-                    (restaurant = {
-                        name: o.restaurant.name,
-                        url: o.restaurant.url,
-                        address: o.restaurant.location.address,
-                        rating: o.restaurant.all_reviews.rating,
-                        review: o.restaurant.all_reviews.review_text,
-                        menu: o.restaurant.menu_url,
-                        phone: o.restaurant.phone_numbers,
-                        photos: o.restaurant.featured_image,
-                    }),
-                ]),
-            };
+  let allRestaurnt = {}
 
-            // ==== TESTING ON result.js ====
-            // console.log(allRestaurnt.restaurants);
-            res.json(allRestaurnt);
+  zomato.getZomatoCityId(req.query.city).then(function(cityId) {
+    zomato.getZomatoRestaurant(cityId).then((result) => {
+      allRestaurnt.restaurants = result.restaurants.map((o) => 
+          (restaurant = {
+            name: o.restaurant.name,
+            url: o.restaurant.url,
+            address: o.restaurant.location.address,
+            menu: o.restaurant.menu_url,
+            phone: o.restaurant.phone_numbers,
+            photos: o.restaurant.featured_image,
+            res_id: o.restaurant.id
+          }),
+        )
+      ;
 
-            // // ==== PREPARED FOR HANDLE_BAR=====
-            // res.render('search', {allRestaurnt});
-        });
+   
+      res.json(allRestaurnt);
+      // // ==== PREPARED FOR HANDLE_BAR=====
+      // res.render('search', {allRestaurnt});
     });
+
+
+  });
 });
+
+
+
+// Call 'zomato' Restaurant Reviews
+router.get("/api/restaurantReviews", (req, res) => {
+  zomato.getRestaurantReview(req.query.res_id).then(function(data) {
+      let onlyTwoData = data.user_reviews.slice(0,2);
+      // console.log(onlyTwoData);
+      let allReviews = {
+        reviews: onlyTwoData.map((o) => 
+          (review = {
+            res_id: req.query.res_id,
+            review_text: o.review.review_text,
+            rating_text: o.review.rating_text[0]
+
+          }),
+        ),
+      };
+
+      res.json(allReviews);
+  });
+});
+
+
 
 // Get Activities from Amadeus API
 router.get("/api/activity", (req, res) => {
-    //Get geo-location
-    amadeus.getActivity(req.query.city).then(function(geocode) {
-        // Get amadeus token
-        amadeus.getTokenActivities().then(function(token) {
-            // Get amadeus Activities
-            amadeus.getActivityResult(token, geocode).then(function(activities) {
-                let act = activities.data.slice(0, 3);
-                // console.log(act);
-                let allActivities = {
-                    activities: act.map((o) => [
-                        (Activity = {
-                            name: o.name,
-                            description: o.shortDescription,
-                            rating: o.rating,
-                            price: o.price.amount,
-                            photo: o.pictures[0],
-                            website: o.bookingLink
-                        }),
-                    ]),
-                };
-                // console.log(allActivities);
-                //For Testing
-                res.send(allActivities);
+  //Get geo-location
+  amadeus.getActivity(req.query.city).then(function(geocode) {
+    // Get amadeus token
+    amadeus.getTokenActivities().then(function(token) {
+      // Get amadeus Activities
+      amadeus.getActivityResult(token, geocode).then(function(activities) {
+        let act = activities.data.slice(0, 3);
+        // console.log(act);
+        let allActivities = {
+          activities: act.map((o) => [
+            (Activity = {
+              name: o.name,
+              description: o.shortDescription,
+              rating: o.rating,
+              price: o.price.amount,
+              photo: o.pictures[0],
+            }),
+          ]),
+        };
+        
+        res.send(allActivities);
 
-                // // ==== PREPARED FOR HANDLEBARS=====
-                // res.render('result', {allActivities});
-            });
-        });
+        // // ==== PREPARED FOR HANDLEBARS=====
+        // res.render('result', {allActivities});
+      });
+
     });
 });
 
