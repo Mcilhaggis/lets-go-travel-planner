@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
             restaurantPhoto: Sequelize.STRING,
             activityName: Sequelize.STRING,
             activityPhoto: Sequelize.STRING,
-            activityDescription: Sequelize.STRING,
+            activityDescription: Sequelize.TEXT,
             activityWebsite: Sequelize.STRING
         }, {
             freezeTableName: true, // Model tableName will be the same as the model name
