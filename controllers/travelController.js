@@ -134,7 +134,37 @@ router.post("/api/itinerary", (req, res) => {
                 console.log("You added this already")
             }
         });
+
 });
+
+// POST route for saving a new itinerary item
+router.post("/api/itinerary", (req, res) => {
+    console.log(req.body);
+    // Create takes an argument of an object describing the item we want to
+    // Insert into our table. We pass in an object with a text and complete property.
+
+    //If the item is already in there with a matching activities name the item will not be created
+    db.Itinerary.findOrCreate({
+            where: {
+                activitiesName: req.body.activitiesName
+            },
+            defaults: {
+                memberId: req.user.id,
+                destination: req.body.destination,
+                activitiesName: req.body.activitiesName,
+                activitiesPhoto: req.body.activitiesPhoto,
+                activitiesDescription: req.body.activitiesDescription,
+                activitiesSite: req.body.activitiesSite,
+            },
+        })
+        .then(async([result, created]) => {
+            if (!created) {
+                console.log("You added this already")
+            }
+        });
+
+});
+
 
 
 // Deleting a previously saved item
