@@ -183,7 +183,7 @@ $(document).ready(() => {
             restaurantPhoto: restaurantPhoto
         }
         console.log(itineraryData)
-        fetch('/api/itinerary', {
+        fetch('/api/itinerary/restaurant', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

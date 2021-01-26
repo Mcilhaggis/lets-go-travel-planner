@@ -109,7 +109,7 @@ router.get("/api/itinerary", (req, res) => {
 
 
 // POST route for saving a new itinerary item
-router.post("/api/itinerary", (req, res) => {
+router.post("/api/itinerary/restaurant", (req, res) => {
     console.log(req.body);
     // Create takes an argument of an object describing the item we want to
     // Insert into our table. We pass in an object with a text and complete property.
