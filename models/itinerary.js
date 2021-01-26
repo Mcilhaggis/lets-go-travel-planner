@@ -8,17 +8,14 @@ module.exports = (sequelize, DataTypes) => {
             //     type: DataTypes.STRING,
             //     allowNull: false
             // },
-            // itineraryItemId: Sequelize.INTEGER,
             // activityImageURL: Sequelize.STRING,
             // activityName: Sequelize.STRING,
             // activityDescription: Sequelize.STRING,
-            // restaurantURL: Sequelize.STRING,
+            restaurantWebsite: Sequelize.STRING,
             restaurantName: Sequelize.STRING,
-            // restaurantDescription: Sequelize.STRING,
-            // restaurantPhoto: Sequelize.STRING, // Photo URL
-            // restaurantLocation: Sequelize.STRING,
-            // menuURL: Sequelize.STRING,
-            // userRating: Sequelize.INTEGER
+            restaurantAddress: Sequelize.STRING,
+            restaurantPhone: Sequelize.STRING,
+            restaurantPhoto: Sequelize.STRING, // Photo URL
         }, {
             freezeTableName: true, // Model tableName will be the same as the model name
             timestamps: false // Removing the createdAt and updatedAt defualt columns from this table
