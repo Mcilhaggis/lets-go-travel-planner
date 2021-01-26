@@ -2,17 +2,20 @@ $(document).ready(() => {
     const restaurantsResults = document.getElementById("restaurantsResults");
     const activitiesResults = document.getElementById("activitiesResults");
 
+    // Api request to recieve activity data
     function getActivityResultAPI(city) {
         $.get("/api/activity", { city: city }).then((data) => {
             console.log(data);
             for (let i = 0; i < data.activities.length; i++) {
                 // view activity name
                 const activitiesName = document.createElement("h2");
+                activitiesName.setAttribute('id', `activity-${i}`);
                 activitiesResults.appendChild(activitiesName);
                 activitiesName.textContent = data.activities[i][0].name;
 
                 // view activity photo
                 const activitiesImage = document.createElement('img');
+                activitiesImage.setAttribute('id', `activity-image-${i}`);
                 activitiesImage.src = data.activities[i][0].photo;
                 activitiesResults.appendChild(activitiesImage);
                 activitiesImage.style.height = "auto";
@@ -21,21 +24,23 @@ $(document).ready(() => {
 
                 //view activity description
                 const activitiesDescription = document.createElement('p');
+                activitiesDescription.setAttribute('id', `activity-description-${i}`);
                 activitiesDescription.textContent = data.activities[i][0].description;
-                activitiesImage.style.margin = "15px";
+                activitiesImage.style.margin = "15px"; //?????
                 activitiesResults.appendChild(activitiesDescription);
 
                 //view URL for activity  - NEEDS URL FROM API ADDED
                 const activitySite = document.createElement('a');
                 activitySite.href = data.activities[i][0].website;
+                activitySite.setAttribute('id', `activity-site-${i}`);
                 activitySite.textContent = data.activities[i][0].name + " website";
                 activitySite.target = "_blank"
                 activitiesResults.appendChild(activitySite);
 
                 //save button to connect to database
                 const activitySaveBtn = document.createElement('button');
-                activitySaveBtn.id = "aSave";
-                activitySaveBtn.className = "save btn btn-primary";
+                activitySaveBtn.className = "aSave save btn btn-primary";
+                activitySaveBtn.setAttribute('data-id-target', `${i}`);
                 activitySaveBtn.innerHTML = "SAVE";
                 activitiesResults.appendChild(activitySaveBtn);
 
@@ -47,14 +52,14 @@ $(document).ready(() => {
         });
     }
 
+    // Api request to recieve restaurant data
     function getRestaurantAPI(city) {
         $.get("/api/restaurants", { city: city }).then((data) => {
             console.log(data);
             for (let i = 0; i < data.restaurants.length; i++) {
                 // view restaurant name
                 const restaurantsName = document.createElement("h2");
-                restaurantsName.className = "rName";
-                restaurantsName.setAttribute('id', `restaurant-${i}`)
+                restaurantsName.setAttribute('id', `restaurant-${i}`);
                 restaurantsResults.appendChild(restaurantsName);
                 restaurantsName.textContent = data.restaurants[i].name;
 
@@ -110,8 +115,6 @@ $(document).ready(() => {
                 restaurantsResults.appendChild(restaurantSaveBtn);
 
 
-
-
                 //horizontal rule to seperate results
                 const hr = document.createElement('hr');
                 restaurantsResults.appendChild(hr);
@@ -121,7 +124,7 @@ $(document).ready(() => {
         });
     }
 
-
+    // Restaurant reviews api call
     function getRestaurantReviewAPI(res_id) {
         $.ajax({
             url: "/api/restaurantReviews",
@@ -147,6 +150,7 @@ $(document).ready(() => {
         });
     };
 
+    // Set global variable to be able to store the city name for database use
     let cityName;
 
     $("#create-form").on("submit", event => {
@@ -161,6 +165,7 @@ $(document).ready(() => {
 
     });
 
+    // Click function to grab the rendered restaurant data
     $(document).on("click", ".rSave", event => {
         event.preventDefault();
         var restaurantName = document.querySelector(`#restaurant-${event.target.dataset.idTarget}`).textContent
@@ -168,7 +173,7 @@ $(document).ready(() => {
         var restaurantPhone = document.querySelector(`#restaurant-phone-${event.target.dataset.idTarget}`).textContent
         var restaurantWebsite = document.querySelector(`#restaurant-website-${event.target.dataset.idTarget}`).href
         var restaurantPhoto = document.querySelector(`#restaurant-photo-${event.target.dataset.idTarget}`).src
-        console.log(restaurantName)
+
         const itineraryData = {
             destination: cityName,
             restaurantName: restaurantName,
@@ -176,6 +181,31 @@ $(document).ready(() => {
             restaurantPhone: restaurantPhone,
             restaurantWebsite: restaurantWebsite,
             restaurantPhoto: restaurantPhoto
+        }
+        console.log(itineraryData)
+        fetch('/api/itinerary', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(itineraryData),
+        })
+    });
+
+    // // Click function to grab the rendered activity data
+    $(document).on("click", ".aSave", event => {
+        event.preventDefault();
+        var activitiesName = document.querySelector(`#activity-${event.target.dataset.idTarget}`).textContent
+        var activitiesPhoto = document.querySelector(`#activity-image-${event.target.dataset.idTarget}`).src
+        var activitiesDescription = document.querySelector(`#activity-description-${event.target.dataset.idTarget}`).textContent
+        var activitiesSite = document.querySelector(`#activity-site-${event.target.dataset.idTarget}`).href
+
+        const itineraryData = {
+            destination: cityName,
+            activitiesName: activitiesName,
+            activitiesPhoto: activitiesPhoto,
+            activitiesDescription: activitiesDescription,
+            activitiesSite: activitiesSite
         }
         console.log(itineraryData)
         fetch('/api/itinerary', {
