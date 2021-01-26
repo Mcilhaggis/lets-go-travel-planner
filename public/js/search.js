@@ -55,8 +55,7 @@ $(document).ready(() => {
 
                 //save button to connect to database
                 const activitySaveBtn = document.createElement('button');
-                activitySaveBtn.id = "aSave";
-                activitySaveBtn.className = "save btn btn-primary";
+                activitySaveBtn.className = "aSave save btn btn-primary";
                 activitySaveBtn.innerHTML = "SAVE";
                 activitiesResults.appendChild(activitySaveBtn);
 
@@ -74,7 +73,7 @@ $(document).ready(() => {
             for (let i = 0; i < data.restaurants.length; i++) {
                 // view restaurant name
                 const restaurantsName = document.createElement("h2");
-                restaurantsName.id = "rName";
+                restaurantsName.className = "rName";
                 restaurantsResults.appendChild(restaurantsName);
                 restaurantsName.textContent = data.restaurants[i][0].name;
 
@@ -118,8 +117,7 @@ $(document).ready(() => {
 
                 // Save button that links to the database
                 const restaurantSaveBtn = document.createElement('button');
-                restaurantSaveBtn.id = "rSave";
-                restaurantSaveBtn.className = "save btn btn-primary";
+                restaurantSaveBtn.className = "rSave save btn btn-primary";
                 restaurantSaveBtn.innerHTML = "SAVE";
                 restaurantsResults.appendChild(restaurantSaveBtn);
 
@@ -145,11 +143,14 @@ $(document).ready(() => {
 
     });
 
-    $("rSave").on("submit", event => {
+
+
+    $(document).on("click", ".rSave", event => {
         event.preventDefault();
         const itineraryData = {
-            restaurantName: document.getElementById('rName').value.trim(),
+            restaurantName: document.getElementsByClassName('rName').value.trim(),
         }
+        console.log(itineraryData)
 
         fetch('/api/itinerary', {
             method: 'POST',
