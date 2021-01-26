@@ -12,8 +12,11 @@ body {
     color: #e0c10c;
 }
 
-
 .activitySaveBtn {
     font: 40px;
     color: yellow;
+}
+
+.save {
+    margin-left: 7px;
 }

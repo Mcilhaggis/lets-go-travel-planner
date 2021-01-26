@@ -1,4 +1,3 @@
-
 $(document).ready(() => {
 
   const restaurantsResults = document.getElementById("restaurantsResults");
