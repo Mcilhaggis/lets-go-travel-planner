@@ -146,15 +146,15 @@ router.post("/api/itinerary", (req, res) => {
     //If the item is already in there with a matching activities name the item will not be created
     db.Itinerary.findOrCreate({
             where: {
-                activitiesName: req.body.activitiesName
+                activityName: req.body.activityName,
             },
             defaults: {
                 memberId: req.user.id,
                 destination: req.body.destination,
-                activitiesName: req.body.activitiesName,
-                activitiesPhoto: req.body.activitiesPhoto,
-                activitiesDescription: req.body.activitiesDescription,
-                activitiesSite: req.body.activitiesSite,
+                activityName: req.body.activityName,
+                activityPhoto: req.body.activityPhoto,
+                activityDescription: req.body.activityDescription,
+                activityWebsite: req.body.activityWebsite,
             },
         })
         .then(async([result, created]) => {

@@ -32,7 +32,7 @@ $(document).ready(() => {
                 //view URL for activity  - NEEDS URL FROM API ADDED
                 const activitySite = document.createElement('a');
                 activitySite.href = data.activities[i][0].website;
-                activitySite.setAttribute('id', `activity-site-${i}`);
+                activitySite.setAttribute('id', `activity-website-${i}`);
                 activitySite.textContent = data.activities[i][0].name + " website";
                 activitySite.target = "_blank"
                 activitiesResults.appendChild(activitySite);
@@ -195,17 +195,18 @@ $(document).ready(() => {
     // // Click function to grab the rendered activity data
     $(document).on("click", ".aSave", event => {
         event.preventDefault();
-        var activitiesName = document.querySelector(`#activity-${event.target.dataset.idTarget}`).textContent
-        var activitiesPhoto = document.querySelector(`#activity-image-${event.target.dataset.idTarget}`).src
-        var activitiesDescription = document.querySelector(`#activity-description-${event.target.dataset.idTarget}`).textContent
-        var activitiesSite = document.querySelector(`#activity-site-${event.target.dataset.idTarget}`).href
+        console.log("aSave being clicked")
+        var activityName = document.querySelector(`#activity-${event.target.dataset.idTarget}`).textContent
+        var activityPhoto = document.querySelector(`#activity-image-${event.target.dataset.idTarget}`).src
+        var activityDescription = document.querySelector(`#activity-description-${event.target.dataset.idTarget}`).textContent
+        var activityWebsite = document.querySelector(`#activity-website-${event.target.dataset.idTarget}`).href
 
         const itineraryData = {
             destination: cityName,
-            activitiesName: activitiesName,
-            activitiesPhoto: activitiesPhoto,
-            activitiesDescription: activitiesDescription,
-            activitiesSite: activitiesSite
+            activityName: activityName,
+            activityPhoto: activityPhoto,
+            activityDescription: activityDescription,
+            activityWebsite: activityWebsite
         }
         console.log(itineraryData)
         fetch('/api/itinerary', {
