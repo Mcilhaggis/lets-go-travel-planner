@@ -114,16 +114,16 @@ router.post("/api/itinerary", (req, res) => {
     // Insert into our table. We pass in an object with a text and complete property.
     db.Itinerary.create({
         memberId: req.user.id, //this may come from a different place than the rest - referring to the user that is currently logged in
-        activityId: "test",
-        activityImageURL: "test",
-        activityName: "test",
-        activityDescription: "test",
+        // activityId: "test",
+        // activityImageURL: "test",
+        // activityName: "test",
+        // activityDescription: "test",
         restaurantName: req.body.rName,
-        restaurantDescription: "test",
-        restaurantPhoto: "test",
-        restaurantLocation: "test",
-        menuURL: "test",
-        userRating: "test",
+        // restaurantDescription: "test",
+        // restaurantPhoto: "test",
+        // restaurantLocation: "test",
+        // menuURL: "test",
+        // userRating: "test",
     }).then((result) => res.json(result)); // result may not be the right name for
 });
 // Deleting a previously saved item
