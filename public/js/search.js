@@ -25,7 +25,7 @@ $(document).ready(() => {
         //view activity description
         const activitiesDescription = document.createElement("p");
         activitiesDescription.setAttribute("id", `activity-description-${i}`);
-        activitiesDescription.className = `text`;
+        activitiesDescription.className = "text";
         activitiesDescription.textContent = data.activities[i][0].description;
         activitiesImage.style.margin = "15px"; //?????
         activitiesResults.appendChild(activitiesDescription);
