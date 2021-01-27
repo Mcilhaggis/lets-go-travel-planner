@@ -199,7 +199,7 @@ router.post("/api/itinerary", (req, res) => {
 // Deleting a previously saved restaurant
 router.delete("/api/itinerary/:restaurantID", (req, res) => {
     console.log(req.params.restaurantID)
-    // We just have to specify which itinerary item we want to destroy with "where"
+        // We just have to specify which itinerary item we want to destroy with "where"
     db.Itinerary.destroy({
         where: {
             id: req.params.restaurantID, // we get this value from a click on a button of the item it's attached to
@@ -210,7 +210,7 @@ router.delete("/api/itinerary/:restaurantID", (req, res) => {
 // Deleting a previously saved activity
 router.delete("/api/itinerary/:activityID", (req, res) => {
     console.log(req.params.activityID)
-    // We just have to specify which itinerary item we want to destroy with "where"
+        // We just have to specify which itinerary item we want to destroy with "where"
     db.Itinerary.destroy({
         where: {
             id: req.params.activityID, // we get this value from a click on a button of the item it's attached to
@@ -218,9 +218,20 @@ router.delete("/api/itinerary/:activityID", (req, res) => {
     }).then((result) => res.json(result));
 });
 
+// Updating restaurant notes
+router.put("/api/itinerary/:restaurantID", (req, res) => {
 
+    db.Itinerary.update({
+        comments: req.body.text,
+    }, {
+        where: {
+            id: req.params.restaurantID
+        }
+    })
+});
 
-
+// API CODE
+// ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 const resId = [];
 // Call Api function from Class 'zomato'
