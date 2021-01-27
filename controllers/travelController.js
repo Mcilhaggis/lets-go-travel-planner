@@ -103,7 +103,7 @@ router.get("/api/itinerary/restaurant", (req, res) => {
     console.log(req.user.id);
     // findAll returns all entries for a table when used with no options
     db.Itinerary.findAll({
-        attributes: ['restaurantName', 'restaurantWebsite', 'restaurantAddress', 'restaurantPhone', 'restaurantPhoto'],
+        attributes: ['id', 'restaurantName', 'restaurantWebsite', 'restaurantAddress', 'restaurantPhone', 'restaurantPhoto'],
         where: {
             [Op.and]: [
                 { memberID: req.user.id },
@@ -121,7 +121,7 @@ router.get("/api/itinerary", (req, res) => {
     console.log(req.user.id);
     // findAll returns all entries for a table when used with no options
     db.Itinerary.findAll({
-        attributes: ['activityName', 'activityPhoto', 'activityDescription', 'activityWebsite'],
+        attributes: ['id', 'activityName', 'activityPhoto', 'activityDescription', 'activityWebsite'],
         where: {
             [Op.and]: [
                 { memberID: req.user.id },
@@ -196,15 +196,31 @@ router.post("/api/itinerary", (req, res) => {
 
 
 
-// Deleting a previously saved item
-router.delete("/api/itinerary/:restaurantName", (req, res) => {
+// Deleting a previously saved restaurant
+router.delete("/api/itinerary/:restaurantID", (req, res) => {
+    console.log(req.params.restaurantID)
     // We just have to specify which itinerary item we want to destroy with "where"
     db.Itinerary.destroy({
         where: {
-            restaurantName: req.params.restaurantName, // we get this value from a click on a button of the item it's attached to
+            id: req.params.restaurantID, // we get this value from a click on a button of the item it's attached to
         },
     }).then((result) => res.json(result));
 });
+
+// Deleting a previously saved activity
+router.delete("/api/itinerary/:activityID", (req, res) => {
+    console.log(req.params.activityID)
+    // We just have to specify which itinerary item we want to destroy with "where"
+    db.Itinerary.destroy({
+        where: {
+            id: req.params.activityID, // we get this value from a click on a button of the item it's attached to
+        },
+    }).then((result) => res.json(result));
+});
+
+
+
+
 
 const resId = [];
 // Call Api function from Class 'zomato'
