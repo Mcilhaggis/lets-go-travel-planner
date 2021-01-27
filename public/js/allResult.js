@@ -11,15 +11,26 @@ $(document).ready(() => {
         .then((data) => {
             console.log('Success in getting all restaurant names:', data);
             data.forEach(({ restaurantName }, i) => {
+                //Dynamically creating elements to store save dratuarant results
                 const rNames = document.getElementById('rNames');
                 const rNameListItem = document.createElement('li');
                 const viewItem = document.createElement('button');
+                const deleteItem = document.createElement('button');
+
+                //Adding attributes to created elements
+                rNameListItem.setAttribute('id', `restaurant-name-${i}`)
                 rNameListItem.className = `my-3`;
                 viewItem.className = `restaurantModalView text-center`;
+                deleteItem.className = `deleteRestaurant`
                 viewItem.textContent = `View`;
-                rNameListItem.textContent = `${restaurantName}  `;
+                deleteItem.textContent = `Delete`;
+                deleteItem.setAttribute('data-id-target', `${i}`)
+                rNameListItem.textContent = `${restaurantName}`;
+
+                //Appending elements to the page
                 rNames.appendChild(rNameListItem);
                 rNameListItem.appendChild(viewItem);
+                rNameListItem.appendChild(deleteItem);
             });
         })
         .catch((error) => {
@@ -38,15 +49,24 @@ $(document).ready(() => {
         .then((data) => {
             console.log('Success in getting all activity names:', data);
             data.forEach(({ activityName }, i) => {
+                //Creating activity display elements dynamically
                 const aNames = document.getElementById('aNames');
-                const aNameListItem = document.createElement('li')
-                const viewItem = document.createElement('button')
-                aNameListItem.className = `my-3`
-                viewItem.className = `activityModalView text-center`
-                viewItem.textContent = `View`
-                aNameListItem.textContent = `${activityName}  `
+                const aNameListItem = document.createElement('li');
+                const viewItem = document.createElement('button');
+                const deleteActivity = document.createElement('button');
+
+                //Assigning attributes to activity list elements
+                aNameListItem.className = `my-3`;
+                viewItem.className = `activityModalView text-center`;
+                deleteActivity.className = `deleteActivity`;
+                viewItem.textContent = `View`;
+                deleteActivity.textContent = `Delete`;
+                aNameListItem.textContent = `${activityName}`;
+
+                //Appending activity items to the page dynamically
                 aNames.appendChild(aNameListItem);
                 aNameListItem.appendChild(viewItem)
+                aNameListItem.appendChild(deleteActivity)
             });
         })
         .catch((error) => {
@@ -139,4 +159,27 @@ $(document).ready(() => {
         .catch((error) => {
             console.error('Error:', error);
         });
+
+
+
+        // DELETE ROUTE 
+        // RESTAURANT
+        $(document).on("click", ".deleteRestaurant", e => {
+            console.log("i'm clicked")
+            e.preventDefault();
+            const restaurantName = document.querySelector(`#restaurant-name-${e.target.dataset.idTarget}`).childNodes[0];
+            // const { restaurantName } = data.id.target;
+            JSON.parse(restaurantName)
+            console.log(restaurantName)
+        
+            fetch(`/api/itinerary/${restaurantName}`, {
+              method: 'DELETE',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }).then(console.log("item deleted"));
+          });
+
+
+
 });

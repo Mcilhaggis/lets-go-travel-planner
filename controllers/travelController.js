@@ -197,11 +197,11 @@ router.post("/api/itinerary", (req, res) => {
 
 
 // Deleting a previously saved item
-router.delete("/api/itinerary/:activityId", (req, res) => {
+router.delete("/api/itinerary/:restaurantName", (req, res) => {
     // We just have to specify which itinerary item we want to destroy with "where"
     db.Itinerary.destroy({
         where: {
-            id: req.params.activityId, // we get this value from a click on a button of the item it's attached to
+            restaurantName: req.params.restaurantName, // we get this value from a click on a button of the item it's attached to
         },
     }).then((result) => res.json(result));
 });
