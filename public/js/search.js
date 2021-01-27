@@ -8,7 +8,7 @@ $(document).ready(() => {
       console.log(data);
       for (let i = 0; i < data.activities.length; i++) {
         // view activity name
-        const activitiesName = document.createElement("h2");
+        const activitiesName = document.createElement("h4");
         activitiesName.setAttribute("id", `activity-${i}`);
         activitiesResults.appendChild(activitiesName);
         activitiesName.textContent = data.activities[i][0].name;
@@ -40,9 +40,9 @@ $(document).ready(() => {
 
         //save button to connect to database
         const activitySaveBtn = document.createElement("button");
-        activitySaveBtn.className = "aSave save btn btn-primary";
+        activitySaveBtn.className = "aSave save btn btn-primary btn-sm";
         activitySaveBtn.setAttribute("data-id-target", `${i}`);
-        activitySaveBtn.innerHTML = "SAVE   ";
+        activitySaveBtn.innerHTML = "SAVE";
         activitiesResults.appendChild(activitySaveBtn);
 
         //horizontal rule to seperate results
@@ -58,7 +58,7 @@ $(document).ready(() => {
       console.log(data);
       for (let i = 0; i < data.restaurants.length; i++) {
         // view restaurant name
-        const restaurantsName = document.createElement("h2");
+        const restaurantsName = document.createElement("h4");
         restaurantsName.setAttribute("id", `restaurant-${i}`);
         restaurantsResults.appendChild(restaurantsName);
         restaurantsName.textContent = data.restaurants[i].name;
@@ -110,7 +110,7 @@ $(document).ready(() => {
 
         // Save button that links to the database
         const restaurantSaveBtn = document.createElement("button");
-        restaurantSaveBtn.className = "rSave save btn btn-primary";
+        restaurantSaveBtn.className = "rSave save btn btn-primary btn-sm";
         restaurantSaveBtn.setAttribute("data-id-target", `${i}`);
         restaurantSaveBtn.innerHTML = "SAVE";
         restaurantsResults.appendChild(restaurantSaveBtn);
