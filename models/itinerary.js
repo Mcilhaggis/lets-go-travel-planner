@@ -17,7 +17,12 @@ module.exports = (sequelize, DataTypes) => {
             activityName: Sequelize.STRING,
             activityPhoto: Sequelize.STRING,
             activityDescription: Sequelize.TEXT,
-            activityWebsite: Sequelize.STRING
+            activityWebsite: Sequelize.STRING,
+            comments: {
+                type: DataTypes.TEXT,
+                allowNull: true,
+                len: [1],
+            }
         }, {
             freezeTableName: true, // Model tableName will be the same as the model name
             timestamps: false // Removing the createdAt and updatedAt defualt columns from this table
