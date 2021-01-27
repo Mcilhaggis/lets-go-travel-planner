@@ -4,7 +4,7 @@ $(document).ready(() => {
 
   // Api request to recieve activity data
   function getActivityResultAPI(city) {
-    $.get("/api/activity", { city: city }).then(data => {
+    $.get("/api/activity", { city: city }).then((data) => {
       console.log(data);
       for (let i = 0; i < data.activities.length; i++) {
         // view activity name
@@ -35,7 +35,7 @@ $(document).ready(() => {
         activitySite.href = data.activities[i][0].website;
         activitySite.setAttribute("id", `activity-website-${i}`);
         activitySite.textContent = "Book Now";
-        activitySite.className = "d-inline-block";
+        activitySite.className = "mb-5 d-inline-block";
         activitySite.target = "_blank";
         activitiesResults.appendChild(activitySite);
 
@@ -44,7 +44,6 @@ $(document).ready(() => {
         activitySaveBtn.className = "aSave save btn btn-primary btn-sm";
         activitySaveBtn.setAttribute("data-id-target", `${i}`);
         activitySaveBtn.innerHTML = "Save";
-        // activitiesResults.appendChild(activitySaveBtn);
         activitySite.appendChild(activitySaveBtn);
 
         //horizontal rule to seperate results
@@ -56,7 +55,7 @@ $(document).ready(() => {
 
   // Api request to recieve restaurant data
   function getRestaurantAPI(city) {
-    $.get("/api/restaurants", { city: city }).then(data => {
+    $.get("/api/restaurants", { city: city }).then((data) => {
       console.log(data);
       for (let i = 0; i < data.restaurants.length; i++) {
         // view restaurant name
@@ -68,18 +67,17 @@ $(document).ready(() => {
         // clickable link to take user to zomato restaurant photos page
         const restaurantsImage = document.createElement("img");
         restaurantsImage.setAttribute("id", `restaurant-photo-${i}`);
-        const linkText = document.createTextNode("view photos");
-        restaurantsImage.appendChild(linkText);
-        restaurantsImage.title = "my title text";
+        // const linkText = document.createTextNode("view photos");
+        // restaurantsImage.appendChild(linkText);
+        // restaurantsImage.title = "my title text";
         restaurantsImage.src = data.restaurants[i].photos;
-        restaurantsImage.target = "_blank";
+        restaurantsResults.appendChild(restaurantsImage);
+        // restaurantsImage.target = "_blank";
         restaurantsImage.style.height = "auto";
         restaurantsImage.style.width = "200px";
         restaurantsImage.style.float = "left";
         restaurantsImage.style.marginRight = "15px";
-        document
-          .getElementById("restaurantsResults")
-          .appendChild(restaurantsImage);
+        restaurantsImage.className = "img-fluid";
 
         //view review for restuarant
         // const restaurantReview = document.createElement('p');
@@ -91,6 +89,7 @@ $(document).ready(() => {
         restaurantAddress.setAttribute("id", `restaurant-address-${i}`);
         restaurantAddress.textContent =
           "Address: " + data.restaurants[i].address;
+        restaurantsImage.style.margin = "15px";
         restaurantsResults.appendChild(restaurantAddress);
 
         //view phone number for restuarant
@@ -104,6 +103,7 @@ $(document).ready(() => {
         restaurantSite.setAttribute("id", `restaurant-website-${i}`);
         restaurantSite.href = data.restaurants[i].url;
         restaurantSite.textContent = "Visit Website";
+        restaurantSite.className = "mb-5 d-inline-block";
         restaurantSite.target = "_blank";
         restaurantsResults.appendChild(restaurantSite);
 
@@ -115,7 +115,8 @@ $(document).ready(() => {
         restaurantSaveBtn.className = "rSave save btn btn-primary btn-sm";
         restaurantSaveBtn.setAttribute("data-id-target", `${i}`);
         restaurantSaveBtn.innerHTML = "Save";
-        restaurantsResults.appendChild(restaurantSaveBtn);
+        // restaurantsResults.appendChild(restaurantSaveBtn);
+        restaurantSite.appendChild(restaurantSaveBtn);
 
         //horizontal rule to seperate results
         const hr = document.createElement("hr");
@@ -147,14 +148,14 @@ $(document).ready(() => {
             "Review: " + reviewsResult.reviews[i].review_text;
           restaurantsResults.appendChild(restaurantReview);
         }
-      }
+      },
     });
   }
 
   // Set global variable to be able to store the city name for database use
   let cityName;
 
-  $("#create-form").on("submit", event => {
+  $("#create-form").on("submit", (event) => {
     event.preventDefault();
     cityName = ca.value.trim();
     console.log(ca.value.trim());
@@ -166,7 +167,7 @@ $(document).ready(() => {
   });
 
   // Click function to grab the rendered restaurant data
-  $(document).on("click", ".rSave", event => {
+  $(document).on("click", ".rSave", (event) => {
     event.preventDefault();
     const restaurantName = document.querySelector(
       `#restaurant-${event.target.dataset.idTarget}`
@@ -190,20 +191,20 @@ $(document).ready(() => {
       restaurantAddress: restaurantAddress,
       restaurantPhone: restaurantPhone,
       restaurantWebsite: restaurantWebsite,
-      restaurantPhoto: restaurantPhoto
+      restaurantPhoto: restaurantPhoto,
     };
     console.log(itineraryData);
     fetch("/api/itinerary/restaurant", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(itineraryData)
+      body: JSON.stringify(itineraryData),
     });
   });
 
   // // Click function to grab the rendered activity data
-  $(document).on("click", ".aSave", event => {
+  $(document).on("click", ".aSave", (event) => {
     event.preventDefault();
     console.log("aSave being clicked");
     const activityName = document.querySelector(
@@ -224,15 +225,15 @@ $(document).ready(() => {
       activityName: activityName,
       activityPhoto: activityPhoto,
       activityDescription: activityDescription,
-      activityWebsite: activityWebsite
+      activityWebsite: activityWebsite,
     };
     console.log(itineraryData);
     fetch("/api/itinerary", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(itineraryData)
+      body: JSON.stringify(itineraryData),
     });
   });
 });
