@@ -151,8 +151,9 @@ $(document).on("click", ".updateRestaurant", event => {
     console.log("Notes updates successfully")
     const modalRestaurantComment = document.getElementById("modalRestaurantComment").value;
     console.log(modalRestaurantComment)
+    console.log("The id is: " + restaurantID)
 
-    fetch('/api/itinerary/r:estaurantID', {
+    fetch(`/api/itinerary/${restaurantID}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
