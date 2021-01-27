@@ -25,6 +25,7 @@
                 deleteItem.className = `deleteRestaurant`
                 viewItem.textContent = `View`;
                 deleteItem.textContent = `Delete`;
+                viewItem.setAttribute('data-id-target', `${i}`)
                 deleteItem.setAttribute('data-id-target', `${i}`)
                 rNameListItem.textContent = `${restaurantName}`;
                 
@@ -66,6 +67,7 @@
                 deleteActivity.className = `deleteActivity`;
                 viewItem.textContent = `View`;
                 deleteActivity.textContent = `Delete`;
+                viewItem.setAttribute('data-id-target', `${i}`)
                 deleteActivity.setAttribute('data-id-target', `${i}`)
                 aNameListItem.textContent = `${activityName}`;
 
@@ -87,14 +89,17 @@
 
     // Modal restaurant function
     // Show the modal to the user when view button is clicked
-    $(document).on("click", ".restaurantModalView", event => {
-        event.preventDefault();
+    $(document).on("click", ".restaurantModalView", e => {
+        e.preventDefault();
+        const restaurantID = $(`#restaurant-name-${e.target.dataset.idTarget}`).attr("sql")
+        console.log("modal view button clicked " + restaurantID)
         console.log("I've been clicked");
         $('#myRestaurantModal').modal('show');
     });
     //Close the modal when user clicks on "close"
     $(document).on("click", ".closeModal", event => {
         event.preventDefault();
+        console.log("modal view button clicked ")
         $('#myRestaurantModal').modal('hide')
     });
     //Update the text area information stored in the database when clicked
@@ -106,9 +111,11 @@
 
     // Modal activity function
     // Show the modal to the user when view button is clicked
-    $(document).on("click", ".activityModalView", event => {
-        event.preventDefault();
+    $(document).on("click", ".activityModalView", e => {
+        e.preventDefault();
+        const activityID = $(`#activity-name-${e.target.dataset.idTarget}`).attr("sql")
         console.log("I've been clicked");
+        console.log("modal view button clicked " + activityID)
         $('#myActivityModal').modal('show');
     });
     //Close the modal when user clicks on "close"
@@ -138,7 +145,7 @@
                 const modalRestaurantPhone = document.getElementById('modalRestaurantPhone');
                 const modalRestaurantWebsite = document.getElementById('modalRestaurantWebsite');
                 const modalRestaurantPhoto = document.getElementById('modalRestaurantPhoto');
-                modalRestaurantName.textContent = `${restaurantName}`;
+                modalRestaurantName.textContent = `${restaurantName},`;
                 modalRestaurantAddress.textContent = `${restaurantAddress}`;
                 modalRestaurantPhone.textContent = `${restaurantPhone}`;
                 modalRestaurantWebsite.href = `${restaurantWebsite}`;
