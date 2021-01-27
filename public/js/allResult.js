@@ -80,8 +80,7 @@
         .catch((error) => {
             console.error('Error:', error);
         });
-
-        }
+}
 
         getRestaurantNames();
         getActivityNames();
@@ -147,12 +146,13 @@
         $('#myRestaurantModal').modal('hide')
     });
 
-    console.log(restaurantID)
     //Update the text area information stored in the database when clicked
     // $(document).on("click", ".update", event => {
     //     event.preventDefault();
     //     console.log("Notes updates successfully")
     // });
+
+
 
     // Modal activity function
     // Show the modal to the user when view button is clicked
@@ -182,9 +182,6 @@
         console.error('Error:', error);
     });
 
-
-        console.log("I've been clicked");
-        console.log("modal view button clicked " + activityID)
         $('#myActivityModal').modal('show');
     });
     //Close the modal when user clicks on "close"

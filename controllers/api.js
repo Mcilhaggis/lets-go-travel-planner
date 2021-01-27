@@ -21,9 +21,11 @@ module.exports = function(app) {
                                 rating: o.rating,
                                 price: o.price.amount,
                                 photo: o.pictures[0],
+                                url: o.bookingLink
                             }),
                         ]),
                     };
+                    console.log(url)
                     console.log(allActivities);
                     //For Testing
                     res.send(allActivities);
