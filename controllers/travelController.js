@@ -7,6 +7,7 @@ const passport = require("../config/passport");
 // Requiring our models and passport as we've configured it
 const zomato = require("../controllers/zomato");
 const amadeus = require("../controllers/amadeus");
+const { Op } = require("sequelize");
 
 
 //HTML ROUTES
@@ -98,16 +99,44 @@ router.get("/api/user_data", (req, res) => {
 //ITINERARY API ROUTES
 //Route for export
 // GET route for getting all of the saved itenrary items
-router.get("/api/itinerary", (req, res) => {
+router.get("/api/itinerary/restaurant", (req, res) => {
+    console.log(req.user.id);
     // findAll returns all entries for a table when used with no options
     db.Itinerary.findAll({
+        attributes: ['restaurantName', 'restaurantWebsite', 'restaurantAddress', 'restaurantPhone', 'restaurantPhoto'],
         where: {
-            memberID: "test", // not test but equal to the users ID from login
-        },
+            [Op.and]: [
+                { memberID: req.user.id },
+                {
+                    restaurantName: {
+                        [Op.not]: ""
+                    }
+                }
+            ]
+        }
+    }).then((result) => res.json(result));
+});
+
+router.get("/api/itinerary", (req, res) => {
+    console.log(req.user.id);
+    // findAll returns all entries for a table when used with no options
+    db.Itinerary.findAll({
+        attributes: ['activityName', 'activityPhoto', 'activityDescription', 'activityWebsite'],
+        where: {
+            [Op.and]: [
+                { memberID: req.user.id },
+                {
+                    activityName: {
+                        [Op.not]: ""
+                    }
+                }
+            ]
+        }
     }).then((result) => res.json(result));
 });
 
 
+// SELECT * FROM post WHERE authorId = 12 AND status = 'active';
 // POST route for saving a new itinerary item
 router.post("/api/itinerary/restaurant", (req, res) => {
     console.log(req.body);

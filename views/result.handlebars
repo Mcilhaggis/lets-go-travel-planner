@@ -19,44 +19,66 @@
     {{!-- Restaurant Column --}}
     <div class="col my-5 mx-3 border border-dark rounded-lg">
       <h3 class="text-center font-weight-bold my-3">Restaurant</h3>
-      <ul class="my-5">
+      <ul class="my-5" id="rNames">
 
-        <li class="my-3">McDonalds <button type="submit" class="text-center">View</button></li>
-        <li class="my-3">Pizza Hut <button type="submit" class="text-center">View</button></li>
-        <li class="my-3">KFC <button type="submit" class="text-center">View</button></li>
       </ul>
     </div>
     {{!-- Activity Column --}}
     <div class="col my-5 mx-3 border border-dark rounded-lg">
       <h3 class="text-center font-weight-bold my-3">Activity</h3>
-      <ul class="my-5">
-        <li class="my-3">Niagara Falls <button type="submit" class="text-center">View</button></li>
-        <li class="my-3">CN Tower <button type="submit" class="text-center">View</button></li>
-        <li class="my-3">Casino <button type="submit" class="text-center">View</button></li>
+      <ul class="my-5" id="aNames">
+      
       </ul>
     </div>
   </div>
 </section>
 
 
-{{!-- MODAL ELEMENT --}}
-{{!-- <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
+{{!-- MODAL RESTAURANT ELEMENT --}}
+<div class="modal fade" id="myRestaurantModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title" id="modalRestaurantName"></h5>
+        <button type="button" class="close closeModal" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <h5 id="modalRestaurantAddress"></h5>
+        <h5 id="modalRestaurantPhone"></h5>
+        <h5 id="modalRestaurantWebsite"></h5>
+        <img id="modalRestaurantPhoto" alt="image of item" class="img-fluid">
+        <textarea placeholder="Space to write comments"></textarea>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary update">Save changes</button>
       </div>
     </div>
   </div>
-</div> --}}
+</div>
+
+{{!-- MODAL ACTIVITY ELEMENT --}}
+<div class="modal fade" id="myActivityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalActivityName"></h5>
+        <button type="button" class="close closeModal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5 id="modalActivityDescription"></h5>
+        <img id="modalActivityPhoto" alt="image of item" class="img-fluid">
+        <textarea placeholder="Space to write comments"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary update">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/allResult.js"></script>
