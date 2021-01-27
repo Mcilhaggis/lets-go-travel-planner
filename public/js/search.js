@@ -25,6 +25,7 @@ $(document).ready(() => {
         //view activity description
         const activitiesDescription = document.createElement("p");
         activitiesDescription.setAttribute("id", `activity-description-${i}`);
+        activitiesDescription.className = `text`;
         activitiesDescription.textContent = data.activities[i][0].description;
         activitiesImage.style.margin = "15px"; //?????
         activitiesResults.appendChild(activitiesDescription);
@@ -41,7 +42,7 @@ $(document).ready(() => {
         const activitySaveBtn = document.createElement("button");
         activitySaveBtn.className = "aSave save btn btn-primary";
         activitySaveBtn.setAttribute("data-id-target", `${i}`);
-        activitySaveBtn.innerHTML = "SAVE";
+        activitySaveBtn.innerHTML = "SAVE   ";
         activitiesResults.appendChild(activitySaveBtn);
 
         //horizontal rule to seperate results
