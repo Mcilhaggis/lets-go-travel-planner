@@ -14,7 +14,7 @@
   - [License](#license)
 
 ## Description
-Let's Go Travel Planner is a travel app that helps users plan their trips effortlessly. The app lets users input the name of the city that they would like to travel to. Whenver a user submits a city name, the app will display a list of recommendations for restaurants and activities to do in the city. Users will also be able to create an account and save their itinerary for easy viewing.
+Let's Go Travel Planner is a travel app that helps users plan their trips effortlessly. The app lets users input the name of the city that they would like to travel to. Whenever a user submits a city name, the app will display a list of recommendations for restaurants and activities to do in the city. Users will also be able to create an account and save their itinerary for easy viewing.
 
 ## Technologies Used
 
