@@ -34,7 +34,8 @@ $(document).ready(() => {
         const activitySite = document.createElement("a");
         activitySite.href = data.activities[i][0].website;
         activitySite.setAttribute("id", `activity-website-${i}`);
-        activitySite.textContent = data.activities[i][0].name + " website";
+        activitySite.textContent = "Book Now";
+        activitySite.className = "d-inline-block";
         activitySite.target = "_blank";
         activitiesResults.appendChild(activitySite);
 
@@ -42,8 +43,9 @@ $(document).ready(() => {
         const activitySaveBtn = document.createElement("button");
         activitySaveBtn.className = "aSave save btn btn-primary btn-sm";
         activitySaveBtn.setAttribute("data-id-target", `${i}`);
-        activitySaveBtn.innerHTML = "SAVE";
-        activitiesResults.appendChild(activitySaveBtn);
+        activitySaveBtn.innerHTML = "Save";
+        // activitiesResults.appendChild(activitySaveBtn);
+        activitySite.appendChild(activitySaveBtn);
 
         //horizontal rule to seperate results
         const hr = document.createElement("hr");
@@ -101,7 +103,7 @@ $(document).ready(() => {
         const restaurantSite = document.createElement("a");
         restaurantSite.setAttribute("id", `restaurant-website-${i}`);
         restaurantSite.href = data.restaurants[i].url;
-        restaurantSite.textContent = data.restaurants[i].name + " website";
+        restaurantSite.textContent = "Visit Website";
         restaurantSite.target = "_blank";
         restaurantsResults.appendChild(restaurantSite);
 
@@ -112,7 +114,7 @@ $(document).ready(() => {
         const restaurantSaveBtn = document.createElement("button");
         restaurantSaveBtn.className = "rSave save btn btn-primary btn-sm";
         restaurantSaveBtn.setAttribute("data-id-target", `${i}`);
-        restaurantSaveBtn.innerHTML = "SAVE";
+        restaurantSaveBtn.innerHTML = "Save";
         restaurantsResults.appendChild(restaurantSaveBtn);
 
         //horizontal rule to seperate results
