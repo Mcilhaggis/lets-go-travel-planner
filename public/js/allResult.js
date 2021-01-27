@@ -90,12 +90,18 @@
         let activityID;
         let restaurantID;
 
-        // MAKING MODAL ELEMENTS GLOBAL
+        // MAKING RESTAURANT MODAL ELEMENTS GLOBAL
         const modalRestaurantName = document.getElementById('modalRestaurantName');
         const modalRestaurantAddress = document.getElementById('modalRestaurantAddress');
         const modalRestaurantPhone = document.getElementById('modalRestaurantPhone');
         const modalRestaurantWebsite = document.getElementById('modalRestaurantWebsite');
         const modalRestaurantPhoto = document.getElementById('modalRestaurantPhoto');
+
+        // MAKING ACTIVITY MODAL ELEMENTS GLOBAL
+        const modalActivityName = document.getElementById('modalActivityName');
+        const modalActivityDescription = document.getElementById('modalActivityDescription');
+        const modalActivityPhoto = document.getElementById('modalActivityPhoto');
+
 
     // Modal restaurant function
     // Show the modal to the user when view button is clicked
@@ -122,13 +128,11 @@
                     modalRestaurantWebsite.href = `${restaurantWebsite}`;
                     modalRestaurantPhoto.src = `${restaurantPhoto}`;
                 }
-
             });
         })
         .catch((error) => {
             console.error('Error:', error);
         });
-
 
         console.log("modal view button clicked " + restaurantID)
         console.log("I've been clicked");
@@ -155,6 +159,30 @@
     $(document).on("click", ".activityModalView", e => {
         e.preventDefault();
         activityID = $(`#activity-name-${e.target.dataset.idTarget}`).attr("sql")
+
+        
+    fetch('/api/itinerary', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        // console.log('Success in getting all activity data:', data);
+        data.forEach(({ id, activityName, activityPhoto, activityDescription }, i) => {
+            if(id == activityID){
+                modalActivityName.textContent = `${activityName}`;
+                modalActivityDescription.textContent = `${activityDescription}`;
+                modalActivityPhoto.src = `${activityPhoto}`;
+            }
+        });
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+
+
         console.log("I've been clicked");
         console.log("modal view button clicked " + activityID)
         $('#myActivityModal').modal('show');
@@ -171,7 +199,9 @@
     //     console.log("Notes updates successfully")
     // });        
 
-    // fetch('/api/itinerary/restaurant', {
+ 
+
+    // fetch('/api/itinerary', {
     //         method: 'GET',
     //         headers: {
     //             'Content-Type': 'application/json',
@@ -179,51 +209,19 @@
     //     })
     //     .then((response) => response.json())
     //     .then((data) => {
-    //         console.log('Success in getting all restaurant data CURRENT:', data);
-    //         data.forEach(({ id, restaurantName, restaurantWebsite, restaurantAddress, restaurantPhone, restaurantPhoto }, i) => {
-    //             console.log(id)
-    //             console.log(restaurantID)
-    //             const modalRestaurantName = document.getElementById('modalRestaurantName');
-    //             const modalRestaurantAddress = document.getElementById('modalRestaurantAddress');
-    //             const modalRestaurantPhone = document.getElementById('modalRestaurantPhone');
-    //             const modalRestaurantWebsite = document.getElementById('modalRestaurantWebsite');
-    //             const modalRestaurantPhoto = document.getElementById('modalRestaurantPhoto');
-    //             if(id === restaurantID){
-    //                 modalRestaurantName.textContent = `${restaurantName},`;
-    //                 modalRestaurantAddress.textContent = `${restaurantAddress}`;
-    //                 modalRestaurantPhone.textContent = `${restaurantPhone}`;
-    //                 modalRestaurantWebsite.href = `${restaurantWebsite}`;
-    //                 modalRestaurantPhoto.src = `${restaurantPhoto}`;
-    //             }
-
-
+    //         // console.log('Success in getting all activity data:', data);
+    //         data.forEach(({ activityName, activityPhoto, activityDescription }, i) => {
+    //             const modalActivityName = document.getElementById('modalActivityName');
+    //             const modalActivityDescription = document.getElementById('modalActivityDescription');
+    //             const modalActivityPhoto = document.getElementById('modalActivityPhoto');
+    //             modalActivityName.textContent = `${activityName}`;
+    //             modalActivityDescription.textContent = `${activityDescription}`;
+    //             modalActivityPhoto.src = `${activityPhoto}`;
     //         });
     //     })
     //     .catch((error) => {
     //         console.error('Error:', error);
     //     });
-
-    fetch('/api/itinerary', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            // console.log('Success in getting all activity data:', data);
-            data.forEach(({ activityName, activityPhoto, activityDescription }, i) => {
-                const modalActivityName = document.getElementById('modalActivityName');
-                const modalActivityDescription = document.getElementById('modalActivityDescription');
-                const modalActivityPhoto = document.getElementById('modalActivityPhoto');
-                modalActivityName.textContent = `${activityName}`;
-                modalActivityDescription.textContent = `${activityDescription}`;
-                modalActivityPhoto.src = `${activityPhoto}`;
-            });
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
 
 
         // DELETE ROUTE 
