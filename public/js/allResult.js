@@ -1,85 +1,88 @@
 // Getting restaurant name
 const getRestaurantNames = () => {
-    fetch('/api/itinerary/restaurant', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            // console.log('Success in getting all restaurant names:', data);
-            data.forEach(({ id, restaurantName }, i) => {
-                //Dynamically creating elements to store save dratuarant results
-                const rNames = document.getElementById('rNames');
-                const rNameListItem = document.createElement('li');
-                const viewItem = document.createElement('button');
-                const deleteItem = document.createElement('button');
+  fetch("/api/itinerary/restaurant", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then(response => response.json())
+    .then(data => {
+      // console.log('Success in getting all restaurant names:', data);
+      data.forEach(({ id, restaurantName }, i) => {
+        //Dynamically creating elements to store save dratuarant results
+        const rNames = document.getElementById("rNames");
+        const rNameListItem = document.createElement("li");
+        const viewItem = document.createElement("button");
+        const deleteItem = document.createElement("button");
 
-                //Adding attributes to created elements
-                rNameListItem.setAttribute('sql', `${id}`)
-                rNameListItem.setAttribute('id', `restaurant-name-${i}`)
-                rNameListItem.className = `my-3`;
-                viewItem.className = `restaurantModalView text-center`;
-                deleteItem.className = `deleteRestaurant`
-                viewItem.textContent = `View`;
-                deleteItem.textContent = `Delete`;
-                viewItem.setAttribute('data-id-target', `${i}`)
-                deleteItem.setAttribute('data-id-target', `${i}`)
-                rNameListItem.textContent = `${restaurantName}`;
+        //Adding attributes to created elements
+        rNameListItem.setAttribute("sql", `${id}`);
+        rNameListItem.setAttribute("id", `restaurant-name-${i}`);
+        rNameListItem.className = "my-3";
+        viewItem.className =
+          "restaurantModalView text-center btn btn-primary btn-sm mx-2";
+        deleteItem.className =
+          "deleteRestaurant text-center btn btn-primary btn-sm";
+        viewItem.textContent = "View";
+        deleteItem.textContent = "Delete";
+        viewItem.setAttribute("data-id-target", `${i}`);
+        deleteItem.setAttribute("data-id-target", `${i}`);
+        rNameListItem.textContent = `${restaurantName}`;
 
-                //Appending elements to the page
-                rNames.appendChild(rNameListItem);
-                rNameListItem.appendChild(viewItem);
-                rNameListItem.appendChild(deleteItem);
-            });
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-}
-
+        //Appending elements to the page
+        rNames.appendChild(rNameListItem);
+        rNameListItem.appendChild(viewItem);
+        rNameListItem.appendChild(deleteItem);
+      });
+    })
+    .catch(error => {
+      console.error("Error:", error);
+    });
+};
 
 const getActivityNames = () => {
-    // Getting activity name
-    fetch('/api/itinerary', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            // console.log('Success in getting all activity names:', data);
-            data.forEach(({ id, activityName }, i) => {
-                //Creating activity display elements dynamically
-                const aNames = document.getElementById('aNames');
-                const aNameListItem = document.createElement('li');
-                const viewItem = document.createElement('button');
-                const deleteActivity = document.createElement('button');
+  // Getting activity name
+  fetch("/api/itinerary", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then(response => response.json())
+    .then(data => {
+      // console.log('Success in getting all activity names:', data);
+      data.forEach(({ id, activityName }, i) => {
+        //Creating activity display elements dynamically
+        const aNames = document.getElementById("aNames");
+        const aNameListItem = document.createElement("li");
+        const viewItem = document.createElement("button");
+        const deleteActivity = document.createElement("button");
 
-                //Assigning attributes to activity list elements
-                aNameListItem.setAttribute('sql', `${id}`)
-                aNameListItem.setAttribute('id', `activity-name-${i}`)
-                aNameListItem.className = `my-3`;
-                viewItem.className = `activityModalView text-center`;
-                deleteActivity.className = `deleteActivity`;
-                viewItem.textContent = `View`;
-                deleteActivity.textContent = `Delete`;
-                viewItem.setAttribute('data-id-target', `${i}`)
-                deleteActivity.setAttribute('data-id-target', `${i}`)
-                aNameListItem.textContent = `${activityName}`;
+        //Assigning attributes to activity list elements
+        aNameListItem.setAttribute("sql", `${id}`);
+        aNameListItem.setAttribute("id", `activity-name-${i}`);
+        aNameListItem.className = "my-3";
+        viewItem.className =
+          "activityModalView text-center btn btn-primary btn-sm mx-2";
+        deleteActivity.className =
+          "deleteActivity text-center btn btn-primary btn-sm";
+        viewItem.textContent = "View";
+        deleteActivity.textContent = "Delete";
+        viewItem.setAttribute("data-id-target", `${i}`);
+        deleteActivity.setAttribute("data-id-target", `${i}`);
+        aNameListItem.textContent = `${activityName}`;
 
-                //Appending activity items to the page dynamically
-                aNames.appendChild(aNameListItem);
-                aNameListItem.appendChild(viewItem)
-                aNameListItem.appendChild(deleteActivity)
-            });
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-}
+        //Appending activity items to the page dynamically
+        aNames.appendChild(aNameListItem);
+        aNameListItem.appendChild(viewItem);
+        aNameListItem.appendChild(deleteActivity);
+      });
+    })
+    .catch(error => {
+      console.error("Error:", error);
+    });
+};
 
 getRestaurantNames();
 getActivityNames();
@@ -89,6 +92,7 @@ let activityID;
 let restaurantID;
 
 // MAKING RESTAURANT MODAL ELEMENTS GLOBAL
+
 const modalRestaurantName = document.getElementById('modalRestaurantName');
 const modalRestaurantAddress = document.getElementById('modalRestaurantAddress');
 const modalRestaurantPhone = document.getElementById('modalRestaurantPhone');
@@ -103,9 +107,11 @@ const modalActivityPhoto = document.getElementById('modalActivityPhoto');
 const modalSavedActivityComments = document.getElementById('savedActivityComments')
 
 
+
 // Modal restaurant function
 // Show the modal to the user when view button is clicked
 $(document).on("click", ".restaurantModalView", e => {
+
     e.preventDefault();
     restaurantID = $(`#restaurant-name-${e.target.dataset.idTarget}`).attr("sql")
 
@@ -122,7 +128,7 @@ $(document).on("click", ".restaurantModalView", e => {
 
                 if (id == restaurantID) {
                     console.log("MATCHED")
-                    modalRestaurantName.textContent = `${restaurantName},`;
+                    modalRestaurantName.textContent = `${restaurantName}`;
                     modalRestaurantAddress.textContent = `${restaurantAddress}`;
                     modalRestaurantPhone.textContent = `${restaurantPhone}`;
                     modalRestaurantWebsite.href = `${restaurantWebsite}`;
@@ -201,6 +207,7 @@ $(document).on("click", ".activityModalView", e => {
         });
 
     $('#myActivityModal').modal('show');
+
 });
 
 
@@ -228,43 +235,45 @@ $(document).on("click", ".updateActivity", event => {
 
 //Close the modal when user clicks on "close"
 $(document).on("click", ".closeModal", event => {
-    event.preventDefault();
-    $('#myActivityModal').modal('hide')
+  event.preventDefault();
+  $("#myActivityModal").modal("hide");
 });
+
 
 // DELETE ROUTE 
 // RESTAURANT
 $(document).on("click", ".deleteRestaurant", e => {
-    e.preventDefault();
-    const restaurantID = $(`#restaurant-name-${e.target.dataset.idTarget}`).attr("sql")
-    console.log(restaurantID)
+  e.preventDefault();
+  const restaurantID = $(`#restaurant-name-${e.target.dataset.idTarget}`).attr(
+    "sql"
+  );
+  console.log(restaurantID);
 
-    fetch(`/api/itinerary/${restaurantID}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    }).then(console.log("item deleted"));
-    $("#rNames").empty();
-    getRestaurantNames();
+  fetch(`/api/itinerary/${restaurantID}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then(console.log("item deleted"));
+  $("#rNames").empty();
+  getRestaurantNames();
 });
 
-
-
-// DELETE ROUTE 
+// DELETE ROUTE
 // ACTIVITY
 $(document).on("click", ".deleteActivity", e => {
-    e.preventDefault();
-    const activityID = $(`#activity-name-${e.target.dataset.idTarget}`).attr("sql")
-    console.log(activityID)
+  e.preventDefault();
+  const activityID = $(`#activity-name-${e.target.dataset.idTarget}`).attr(
+    "sql"
+  );
+  console.log(activityID);
 
-    fetch(`/api/itinerary/${activityID}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    }).then(console.log("item deleted"));
-    $("#aNames").empty();
-    getActivityNames();
-
+  fetch(`/api/itinerary/${activityID}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then(console.log("item deleted"));
+  $("#aNames").empty();
+  getActivityNames();
 });

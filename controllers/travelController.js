@@ -315,6 +315,7 @@ router.get("/api/activity", (req, res) => {
                             rating: o.rating,
                             price: o.price.amount,
                             photo: o.pictures[0],
+                            website: o.bookingLink
                         }),
                     ]),
                 };
