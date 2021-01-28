@@ -103,7 +103,7 @@ router.get("/api/itinerary/restaurant", (req, res) => {
     console.log(req.user.id);
     // findAll returns all entries for a table when used with no options
     db.Itinerary.findAll({
-        attributes: ['id', 'restaurantName', 'restaurantWebsite', 'restaurantAddress', 'restaurantPhone', 'restaurantPhoto'],
+        attributes: ['id', 'restaurantName', 'restaurantWebsite', 'restaurantAddress', 'restaurantPhone', 'restaurantPhoto', 'comments'],
         where: {
             [Op.and]: [
                 { memberID: req.user.id },
@@ -121,7 +121,7 @@ router.get("/api/itinerary", (req, res) => {
     console.log(req.user.id);
     // findAll returns all entries for a table when used with no options
     db.Itinerary.findAll({
-        attributes: ['id', 'activityName', 'activityPhoto', 'activityDescription', 'activityWebsite'],
+        attributes: ['id', 'activityName', 'activityPhoto', 'activityDescription', 'activityWebsite', 'comments'],
         where: {
             [Op.and]: [
                 { memberID: req.user.id },
@@ -222,13 +222,26 @@ router.delete("/api/itinerary/:activityID", (req, res) => {
 router.put("/api/itinerary/:restaurantID", (req, res) => {
 
     db.Itinerary.update({
-        comments: req.body.text,
+        comments: req.body.comments,
     }, {
         where: {
             id: req.params.restaurantID
         }
     })
 });
+
+// Updating activity notes
+router.put("/api/itinerary/:activityID", (req, res) => {
+
+    db.Itinerary.update({
+        comments: req.body.comments,
+    }, {
+        where: {
+            id: req.params.activityID
+        }
+    })
+});
+
 
 // API CODE
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------

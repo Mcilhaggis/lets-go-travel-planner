@@ -92,162 +92,155 @@ let activityID;
 let restaurantID;
 
 // MAKING RESTAURANT MODAL ELEMENTS GLOBAL
-const modalRestaurantName = document.getElementById("modalRestaurantName");
-const modalRestaurantAddress = document.getElementById(
-  "modalRestaurantAddress"
-);
-const modalRestaurantPhone = document.getElementById("modalRestaurantPhone");
-const modalRestaurantWebsite = document.getElementById(
-  "modalRestaurantWebsite"
-);
-const modalRestaurantPhoto = document.getElementById("modalRestaurantPhoto");
+
+const modalRestaurantName = document.getElementById('modalRestaurantName');
+const modalRestaurantAddress = document.getElementById('modalRestaurantAddress');
+const modalRestaurantPhone = document.getElementById('modalRestaurantPhone');
+const modalRestaurantWebsite = document.getElementById('modalRestaurantWebsite');
+const modalRestaurantPhoto = document.getElementById('modalRestaurantPhoto');
+const modalSavedRestaurantComments = document.getElementById('savedRestaurantComments');
 
 // MAKING ACTIVITY MODAL ELEMENTS GLOBAL
-const modalActivityName = document.getElementById("modalActivityName");
-const modalActivityDescription = document.getElementById(
-  "modalActivityDescription"
-);
-const modalActivityPhoto = document.getElementById("modalActivityPhoto");
+const modalActivityName = document.getElementById('modalActivityName');
+const modalActivityDescription = document.getElementById('modalActivityDescription');
+const modalActivityPhoto = document.getElementById('modalActivityPhoto');
+const modalSavedActivityComments = document.getElementById('savedActivityComments')
+
+
 
 // Modal restaurant function
 // Show the modal to the user when view button is clicked
 $(document).on("click", ".restaurantModalView", e => {
-  e.preventDefault();
-  restaurantID = $(`#restaurant-name-${e.target.dataset.idTarget}`).attr("sql");
 
-  fetch("/api/itinerary/restaurant", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-    .then(response => response.json())
-    .then(data => {
-      console.log("Success in getting all restaurant data CURRENT:", data);
-      data.forEach(
-        (
-          {
-            id,
-            restaurantName,
-            restaurantWebsite,
-            restaurantAddress,
-            restaurantPhone,
-            restaurantPhoto
-          },
-          i
-        ) => {
-          if (id == restaurantID) {
-            console.log("MATCHED");
-            modalRestaurantName.textContent = `${restaurantName}`;
-            modalRestaurantAddress.textContent = `${restaurantAddress}`;
-            modalRestaurantPhone.textContent = `${restaurantPhone}`;
-            modalRestaurantWebsite.href = `${restaurantWebsite}`;
-            modalRestaurantPhoto.src = `${restaurantPhoto}`;
-          }
-        }
-      );
-    })
-    .catch(error => {
-      console.error("Error:", error);
-    });
+    e.preventDefault();
+    restaurantID = $(`#restaurant-name-${e.target.dataset.idTarget}`).attr("sql")
 
-  console.log("modal view button clicked " + restaurantID);
-  console.log("I've been clicked");
-  $("#myRestaurantModal").modal("show");
-});
+    fetch('/api/itinerary/restaurant', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Success in getting all restaurant data CURRENT:', data);
+            data.forEach(({ id, restaurantName, restaurantWebsite, restaurantAddress, restaurantPhone, restaurantPhoto, comments }, i) => {
 
-//Close the modal when user clicks on "close"
-$(document).on("click", ".closeModal", event => {
-  event.preventDefault();
-  console.log("modal view button clicked ");
-  $("#myRestaurantModal").modal("hide");
+                if (id == restaurantID) {
+                    console.log("MATCHED")
+                    modalRestaurantName.textContent = `${restaurantName}`;
+                    modalRestaurantAddress.textContent = `${restaurantAddress}`;
+                    modalRestaurantPhone.textContent = `${restaurantPhone}`;
+                    modalRestaurantWebsite.href = `${restaurantWebsite}`;
+                    modalRestaurantPhoto.src = `${restaurantPhoto}`;
+                    modalSavedRestaurantComments.textContent = `${comments}`;
+                }
+            });
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+    console.log("modal view button clicked " + restaurantID)
+    console.log("I've been clicked");
+    $('#myRestaurantModal').modal('show');
 });
 
 //Update the text area information stored in the database when clicked
 $(document).on("click", ".updateRestaurant", event => {
-  event.preventDefault();
-  console.log("Notes updates successfully");
-  const modalRestaurantComment = document.getElementById(
-    "modalRestaurantComment"
-  ).value;
-  console.log(modalRestaurantComment);
-  console.log("The id is: " + restaurantID);
+    event.preventDefault();
+    console.log("Notes updates successfully")
+    const modalRestaurantComment = document.getElementById("modalRestaurantComment").value;
 
-  fetch(`/api/itinerary/${restaurantID}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify()
-  }).catch(err => console.error(err));
+    // Clear the comment field and reload the page
+    $('#modalRestaurantComment').val('');
+    location.reload();
+
+    fetch(`/api/itinerary/${restaurantID}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ comments: modalRestaurantComment })
+        })
+        .catch((err) => console.error(err));
+
 });
+
+//Close the modal when user clicks on "close"
+$(document).on("click", ".closeModal", event => {
+    event.preventDefault();
+    console.log("modal view button clicked ")
+    $('#myRestaurantModal').modal('hide')
+});
+
+
+
 
 // Modal activity function
 // Show the modal to the user when view button is clicked
 $(document).on("click", ".activityModalView", e => {
-  e.preventDefault();
-  activityID = $(`#activity-name-${e.target.dataset.idTarget}`).attr("sql");
+    e.preventDefault();
+    activityID = $(`#activity-name-${e.target.dataset.idTarget}`).attr("sql")
 
-  fetch("/api/itinerary", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-    .then(response => response.json())
-    .then(data => {
-      // console.log('Success in getting all activity data:', data);
-      data.forEach(
-        ({ id, activityName, activityPhoto, activityDescription }, i) => {
-          if (id == activityID) {
-            modalActivityName.textContent = `${activityName}`;
-            modalActivityDescription.textContent = `${activityDescription}`;
-            modalActivityPhoto.src = `${activityPhoto}`;
-          }
-        }
-      );
-    })
-    .catch(error => {
-      console.error("Error:", error);
-    });
 
-  $("#myActivityModal").modal("show");
+    fetch('/api/itinerary', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            // console.log('Success in getting all activity data:', data);
+            data.forEach(({ id, activityName, activityPhoto, activityDescription, comments }, i) => {
+                if (id == activityID) {
+                    modalActivityName.textContent = `${activityName}`;
+                    modalActivityDescription.textContent = `${activityDescription}`;
+                    modalActivityPhoto.src = `${activityPhoto}`;
+                    modalSavedActivityComments.textContent = `${comments}`;
+                }
+            });
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+    $('#myActivityModal').modal('show');
+
 });
+
+
+//Update the text area information stored in the database when clicked
+$(document).on("click", ".updateActivity", event => {
+    event.preventDefault();
+    console.log("Notes updates successfully")
+    const modalActivityComment = document.getElementById("modalActivityComment").value;
+
+    // Clear the comment field and reload the page
+    $('#modalActivityComment').val('');
+    location.reload();
+
+    fetch(`/api/itinerary/${activityID}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ comments: modalActivityComment })
+        })
+        .catch((err) => console.error(err));
+
+});
+
+
 //Close the modal when user clicks on "close"
 $(document).on("click", ".closeModal", event => {
   event.preventDefault();
   $("#myActivityModal").modal("hide");
 });
 
-//Update the text area information stored in the database when clicked
-// $(document).on("click", ".update", event => {
-//     event.preventDefault();
-//     console.log("Notes updates successfully")
-// });
 
-// fetch('/api/itinerary', {
-//         method: 'GET',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//     })
-//     .then((response) => response.json())
-//     .then((data) => {
-//         // console.log('Success in getting all activity data:', data);
-//         data.forEach(({ activityName, activityPhoto, activityDescription }, i) => {
-//             const modalActivityName = document.getElementById('modalActivityName');
-//             const modalActivityDescription = document.getElementById('modalActivityDescription');
-//             const modalActivityPhoto = document.getElementById('modalActivityPhoto');
-//             modalActivityName.textContent = `${activityName}`;
-//             modalActivityDescription.textContent = `${activityDescription}`;
-//             modalActivityPhoto.src = `${activityPhoto}`;
-//         });
-//     })
-//     .catch((error) => {
-//         console.error('Error:', error);
-//     });
-
-// DELETE ROUTE
+// DELETE ROUTE 
 // RESTAURANT
 $(document).on("click", ".deleteRestaurant", e => {
   e.preventDefault();
