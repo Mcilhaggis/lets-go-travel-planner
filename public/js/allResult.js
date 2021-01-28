@@ -138,7 +138,7 @@ $(document).on("click", ".restaurantModalView", e => {
         ) => {
           if (id == restaurantID) {
             console.log("MATCHED");
-            modalRestaurantName.textContent = `${restaurantName},`;
+            modalRestaurantName.textContent = `${restaurantName}`;
             modalRestaurantAddress.textContent = `${restaurantAddress}`;
             modalRestaurantPhone.textContent = `${restaurantPhone}`;
             modalRestaurantWebsite.href = `${restaurantWebsite}`;
