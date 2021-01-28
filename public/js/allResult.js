@@ -20,8 +20,10 @@ const getRestaurantNames = () => {
         rNameListItem.setAttribute("sql", `${id}`);
         rNameListItem.setAttribute("id", `restaurant-name-${i}`);
         rNameListItem.className = "my-3";
-        viewItem.className = "restaurantModalView text-center";
-        deleteItem.className = "deleteRestaurant";
+        viewItem.className =
+          "restaurantModalView text-center btn btn-primary btn-sm mx-2";
+        deleteItem.className =
+          "deleteRestaurant text-center btn btn-primary btn-sm";
         viewItem.textContent = "View";
         deleteItem.textContent = "Delete";
         viewItem.setAttribute("data-id-target", `${i}`);
@@ -61,8 +63,10 @@ const getActivityNames = () => {
         aNameListItem.setAttribute("sql", `${id}`);
         aNameListItem.setAttribute("id", `activity-name-${i}`);
         aNameListItem.className = "my-3";
-        viewItem.className = "activityModalView text-center";
-        deleteActivity.className = "deleteActivity";
+        viewItem.className =
+          "activityModalView text-center btn btn-primary btn-sm mx-2";
+        deleteActivity.className =
+          "deleteActivity text-center btn btn-primary btn-sm";
         viewItem.textContent = "View";
         deleteActivity.textContent = "Delete";
         viewItem.setAttribute("data-id-target", `${i}`);
