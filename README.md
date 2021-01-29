@@ -19,14 +19,29 @@ Let's Go Travel Planner is a travel app that helps users plan their trips effort
 ## Technologies Used
 
 The application was developed using the following technologies:
-- Node
-- Express
-- Handlebars
-- MySQL
-- Dark Mode
-- Bootstrap
-- Passport
+- Javascript
+- HTML/CSS
+- Mysql
 - Sequelize
+- Bootstrap
+- Bcryptjs
+- Darkmode
+- Dotenv
+- Express
+- Express-handlebars
+- Express-session
+- Node-fetch
+- Nodemon
+- Passport
+- Jest
+- Eslint
+- Travis CI
+- Supertest
+- Heroku
+- Jquery
+- Node
+- Zomato API
+- Amadeus API
 
 ## Screenshot
 
@@ -38,7 +53,7 @@ To be added.
 The application can be installed by using the following command: 
 
 ```bash
-git clone https://github.com/Mcilhaggis/project-two.git
+git clone https://github.com/Mcilhaggis/lets-go-travel-planner.git
 ```
 
 ## Usage
@@ -54,8 +69,13 @@ The application can then be invoked by using the following command:
 node server.js
 ```
 
+Or alternatively you can run this application using Nodemon. To invoke this app with Nodemon, type in the following command:
+```bash
+nodemon server.js
+``` 
+
 ## View Live Website  
-Please click **[here]()** to view the live webpage hosted on Heroku.
+Please click **[here](https://stormy-springs-60842.herokuapp.com/)** to view the live webpage hosted on Heroku.
 
 ## Testing
 
@@ -80,9 +100,22 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please contact one of our team members if you have any questions regarding the application:
 
-[Github](https://github.com/caymanh)
+- Cayman <br />
+https://github.com/caymanh <br />
+hengcayman@gmail.com <br />
+- Rachael <br />
+https://github.com/Mcilhaggis <br />
+rachael.mcilhagga@live.co.uk <br />
+- Tayyaba <br />
+https://github.com/tasad667023 <br />
+tayyaba.asad1234@gmail.com <br />
+- Yenyu <br />
+https://github.com/yenyulai <br />
+yenyulai98@gmail.com <br />
+- Hustin <br />
+https://github.com/hustinkava <br />
+hkavafsd@gmail.com <br />
 
-[Email](mailto:hengcayman@gmail.com)
 
 ## License
 
