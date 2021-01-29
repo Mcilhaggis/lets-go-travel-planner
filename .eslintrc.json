@@ -10,7 +10,6 @@
   },
   "rules": {
     "array-callback-return": "error",
-    "camelcase": "error",
     "curly": "error",
     "dot-notation": "error",
     "eqeqeq": "error",
@@ -24,7 +23,6 @@
     "no-func-assign": "error",
     "no-irregular-whitespace": "error",
     "no-unreachable": "error",
-    "no-unused-vars": "error",
     "no-var": "error",
     "prefer-arrow-callback": "error",
     "prefer-const": "error",
