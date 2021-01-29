@@ -14,9 +14,6 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
-//Folder for images
-const path = require("path");
-app.use("/logo", express.static(path.join(__dirname, "public/images")));
 // We need to use sessions to keep track of our user's login status
 app.use(
   session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
