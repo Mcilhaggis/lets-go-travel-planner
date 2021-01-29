@@ -1,14 +1,13 @@
-const { response } = require("express");
+require('dotenv').config()
 const fetch = require("node-fetch");
-const express = require("express");
-const router = express.Router();
-const app = express();
+
+
 
 function getActivity(city) {
     return fetch(
             "https://developers.zomato.com/api/v2.1/locations?query=" + city, {
                 headers: {
-                    "user-key": "8afc96c75a3fbe2985c0d465fe2c3940",
+                    "User-Key": process.env.API_KEY,
                 },
             }
         )
