@@ -6,7 +6,7 @@ require ("Sequelize");
 // const { request } = require('chai');
 
 describe("userTest", () => {
-    describe("Initialization", () => {
+  describe("Initialization", () => {
 
         //testing for correct email and password input
         it("should create a user with the correct email and password", async () => {
@@ -44,6 +44,7 @@ describe("destinationTest", () => {
 
             let foundDes = await db.Itinerary.findOne({ where: { destination: 'Toronto' } });
             console.log('found Destination ', foundDes);
+
 
             expect(foundDes.dataValues.destination).toEqual("Toronto");
             //expect(userTest.password).toEqual("animals");
