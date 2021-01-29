@@ -47,7 +47,7 @@ $(document).ready(() => {
 
         //save button to connect to database
         const activitySaveBtn = document.createElement("button");
-        activitySaveBtn.className = "aSave save btn btn-primary btn-sm";
+        activitySaveBtn.className = "aSave save btn btn-light btn-sm";
         activitySaveBtn.setAttribute("data-id-target", `${i}`);
         activitySaveBtn.innerHTML = "Save";
         activitySite.appendChild(activitySaveBtn);
@@ -124,7 +124,7 @@ $(document).ready(() => {
 
         // Save button that links to the database
         const restaurantSaveBtn = document.createElement("button");
-        restaurantSaveBtn.className = "rSave save btn btn-primary btn-sm";
+        restaurantSaveBtn.className = "rSave save btn btn-light btn-sm";
         restaurantSaveBtn.setAttribute("data-id-target", `${i}`);
         restaurantSaveBtn.innerHTML = "Save";
         // restaurantsResults.appendChild(restaurantSaveBtn);
