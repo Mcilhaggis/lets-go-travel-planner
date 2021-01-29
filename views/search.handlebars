@@ -21,12 +21,11 @@
             <form id="create-form">
                 <div class="form-group text-center my-5">
                         <input type="text" id="ca" name="name" placeholder="  Where are you going?"/>
-                        <button type="submit" class="text-center" id="create-form submit-search">Submit</button>
+                        <button type="submit" class="text-center btn btn-light" id="create-form submit-search" onclick="scrollWin(0, 50)">Submit</button>
                 </div>
             </form>
             <div class="my-5 text-center">
-                <button href="./result">View Itinerary</button>
-                <p><a href="./result">View Itinerary</a></p>
+                <a href="./result"><button href="./result" class="btn btn-light">View Itinerary</button></a>
             </div>
 
         </div>
@@ -37,11 +36,11 @@
 <section class="container">
     {{!-- Restaurant Result --}}
     <div class="row me-5">
-        <div class="col mx-5" id="restaurantsResults">
+        <div class="col mx-5 mt-5" id="restaurantsResults">
             {{!-- <h4 class="text-center">Restaurants</h4> --}}
         </div>
         {{!-- Activity Result --}}
-        <div class="col" id="activitiesResults">
+        <div class="col mt-5" id="activitiesResults">
             {{!-- <h4 class="text-center">Activities</h4> --}}
         </div>
     </div>
