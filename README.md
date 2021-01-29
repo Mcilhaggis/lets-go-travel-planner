@@ -59,7 +59,18 @@ Please click **[here]()** to view the live webpage hosted on Heroku.
 
 ## Testing
 
-To be updated.
+There are a total of 4 tests that will run using the commands below.
+
+First, run the below command to install the required package:
+
+```bash
+npm install
+```
+The tests can then be invoked by using the following command: 
+
+```bash
+npm run testApi 
+```
 
 ## Contributing
 
