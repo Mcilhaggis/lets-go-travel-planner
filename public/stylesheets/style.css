@@ -25,6 +25,17 @@ body {
     margin-left: 7px;
 }
 
+.searchContainer {
+    background-image: url("../image/map-plan.jpeg");
+    opacity: 0.8;
+    background-repeat: no-repeat;
+    background-position: auto ;
+    background-size: cover;
+    left:0px;
+    width: 100%;
+    height: 100%;
+}
+
 .text {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -58,6 +69,18 @@ body {
      margin-top: -55px;
  }
 
- .headerImage {
-     background
- }
+#ca, #create-form{
+    border-radius: 10px;
+    padding:3px;
+}
+/* 
+#formSearchButton{
+    width: 300px;
+} */
+#ca{
+    width: 300px;
+}
+
+.navbar-brand{
+    font-family: 'La Belle Aurore', cursive;
+}
