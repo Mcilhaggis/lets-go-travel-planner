@@ -174,7 +174,6 @@ $(document).on("click", ".restaurantModalView", e => {
         ) => {
           //Only display the infomration for the saved item that's clicked
           if (id == restaurantID) {
-            console.log("MATCHED");
             modalRestaurantName.textContent = `${restaurantName}`;
             modalRestaurantAddress.textContent = `${restaurantAddress}`;
             modalRestaurantPhone.textContent = `${restaurantPhone}`;
@@ -214,7 +213,6 @@ $(document).on("click", ".updateRestaurant", event => {
 //Close the modal when user clicks on "close"
 $(document).on("click", ".closeModal", event => {
   event.preventDefault();
-  console.log("modal view button clicked ");
   $("#myRestaurantModal").modal("hide");
 });
 
