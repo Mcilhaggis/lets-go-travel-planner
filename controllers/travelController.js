@@ -281,7 +281,7 @@ router.get("/api/restaurants", (req, res) => {
 router.get("/api/restaurantReviews", (req, res) => {
   zomato.getRestaurantReview(req.query.res_id).then((data) => {
     const onlyTwoData = data.user_reviews.slice(0, 2);
-    // console.log(onlyTwoData);
+    console.log(onlyTwoData);
     const allReviews = {
       reviews: onlyTwoData.map((o) => (review = {
         res_id: req.query.res_id,
@@ -305,10 +305,11 @@ router.get("/api/activity", (req, res) => {
     amadeus.getTokenActivities().then((token) => {
       // Get amadeus Activities
       amadeus.getActivityResult(token, geocode).then((activities) => {
-        const act = activities.data.slice(0, 3);
-        // console.log(act);
+        const shuffled = activities.data.sort(() => 0.5 - Math.random());
+        const selected = shuffled.slice(0, 8);
+        console.log(selected);
         const allActivities = {
-          activities: act.map((o) => [
+          activities: selected.map((o) => [
             (Activity = {
               name: o.name,
               description: o.shortDescription,
