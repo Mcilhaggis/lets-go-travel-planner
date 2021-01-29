@@ -115,7 +115,6 @@ router.get("/api/itinerary/restaurant", (req, res) => {
         }
       ]
     },
-
   }).then((result) => res.json(result));
 });
 
@@ -137,12 +136,10 @@ router.get("/api/itinerary", (req, res) => {
 });
 
 
-// SELECT * FROM post WHERE authorId = 12 AND status = 'active';
 // POST route for saving a new itinerary item
 router.post("/api/itinerary/restaurant", (req, res) => {
   // Create takes an argument of an object describing the item we want to
   // Insert into our table. We pass in an object with a text and complete property.
-
   //If the item is already in there with a matching restaurant name the item will not be created
   db.Itinerary.findOrCreate({
     where: {
@@ -170,7 +167,6 @@ router.post("/api/itinerary/restaurant", (req, res) => {
 router.post("/api/itinerary", (req, res) => {
   // Create takes an argument of an object describing the item we want to
   // Insert into our table. We pass in an object with a text and complete property.
-
   //If the item is already in there with a matching activities name the item will not be created
   db.Itinerary.findOrCreate({
     where: {
@@ -207,7 +203,6 @@ router.delete("/api/itinerary/:restaurantID", (req, res) => {
 
 // Deleting a previously saved activity
 router.delete("/api/itinerary/:activityID", (req, res) => {
-  console.log(req.params.activityID);
   // We just have to specify which itinerary item we want to destroy with "where"
   db.Itinerary.destroy({
     where: {
@@ -218,7 +213,6 @@ router.delete("/api/itinerary/:activityID", (req, res) => {
 
 // Updating restaurant notes
 router.put("/api/itinerary/:restaurantID", (req, res) => {
-
   db.Itinerary.update({
     comments: req.body.comments,
   }, {
@@ -230,7 +224,6 @@ router.put("/api/itinerary/:restaurantID", (req, res) => {
 
 // Updating activity notes
 router.put("/api/itinerary/:activityID", (req, res) => {
-
   db.Itinerary.update({
     comments: req.body.comments,
   }, {
@@ -261,37 +254,12 @@ router.get("/api/restaurants", (req, res) => {
         res_id: o.restaurant.id
       }),
       );
-
-
       res.json(allRestaurnt);
-      // // ==== PREPARED FOR HANDLE_BAR=====
-      // res.render('search', {allRestaurnt});
     });
 
 
   });
 });
-
-
-// Call 'zomato' Restaurant Reviews
-router.get("/api/restaurantReviews", (req, res) => {
-  zomato.getRestaurantReview(req.query.res_id).then((data) => {
-    const onlyTwoData = data.user_reviews.slice(0, 2);
-    console.log(onlyTwoData);
-    const allReviews = {
-      reviews: onlyTwoData.map((o) => (review = {
-        res_id: req.query.res_id,
-        review_text: o.review.review_text,
-        rating_text: o.review.rating_text[0]
-
-      }),
-      ),
-    };
-
-    res.json(allReviews);
-  });
-});
-
 
 // Get Activities from Amadeus API
 router.get("/api/activity", (req, res) => {
@@ -315,11 +283,7 @@ router.get("/api/activity", (req, res) => {
             }),
           ]),
         };
-
         res.send(allActivities);
-
-        // // ==== PREPARED FOR HANDLEBARS=====
-        // res.render('result', {allActivities});
       });
     });
   });
