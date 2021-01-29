@@ -50,19 +50,6 @@ describe("destinationTest", () => {
 
         });
 
-        //         //testing for the destination search
-        //         it("should return the destination searched by the user", () => {
-        //             const desTest = new destination("Toronto", false);
-
-        //             expect(desTest.type).toEqual("toronto");
-        //             expect(desTest.allowNull).toEqual(false);
-        //         });
-
-        //if no email and password are provided
-        // it("should throw an error if provided no arguments", () => {
-        //     const noInfo = () => new User();
-
-        //     expect(noInfo).toThrow();
         // });
     });
 });
