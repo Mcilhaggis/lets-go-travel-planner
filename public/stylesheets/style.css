@@ -34,6 +34,7 @@ body {
  }
 
  .titleContainer{
+     margin-top: 50px;
     display: grid;
     place-items: center;
  }
@@ -44,7 +45,7 @@ body {
 
  .tPlanner{
      margin-top: -60px;
-     margin-left: -150px;
+     margin-left: -230px;
      font-size: 1.5em;
  }
 
@@ -52,6 +53,6 @@ body {
      height: 150px;
      width: auto;
      display: absolute;
-     margin-left: -30px;
-     margin-top: -45px;
+     margin-left: -55px;
+     margin-top: -55px;
  }
