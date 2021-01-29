@@ -44,9 +44,9 @@ body {
  }
 
  .mapPoint{
-     height: 100px;
+     height: 150px;
      width: auto;
      display: absolute;
-     margin-left: 350px;
-     margin-top: -30px;
+     margin-left: 150px;
+     margin-top: -80px;
  }
