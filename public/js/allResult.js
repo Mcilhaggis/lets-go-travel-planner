@@ -173,7 +173,7 @@ $(document).on("click", ".restaurantModalView", e => {
           i
         ) => {
           //Only display the infomration for the saved item that's clicked
-          if (id === restaurantID) {
+          if (id == restaurantID) {
             console.log("MATCHED");
             modalRestaurantName.textContent = `${restaurantName}`;
             modalRestaurantAddress.textContent = `${restaurantAddress}`;
@@ -238,7 +238,7 @@ $(document).on("click", ".activityModalView", e => {
           i
         ) => {
           //Only display the inormation for the item clicked on to view from activities
-          if (id === activityID) {
+          if (id == activityID) {
             modalActivityName.textContent = `${activityName}`;
             modalActivityDescription.textContent = `${activityDescription}`;
             modalActivityPhoto.src = `${activityPhoto}`;

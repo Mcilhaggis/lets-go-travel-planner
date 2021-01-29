@@ -1,3 +1,6 @@
+font-family: 'Raleway', sans-serif;
+
+
 form.signup,
 form.login {
     margin-top: 50px;
@@ -5,6 +8,7 @@ form.login {
 
 body {
     background-color: #33aa85;
+    
 }
 
 .large-size {
@@ -27,4 +31,13 @@ body {
     display: -webkit-box;
     -webkit-line-clamp: 4; /* number of lines to show */
     -webkit-box-orient: vertical;
+ }
+
+ .logoName{
+    font-size: 10rem;
+    font-family: 'La Belle Aurore', cursive;
+ }
+
+ .tPlanner{
+     font-size: 1.5em;
  }
