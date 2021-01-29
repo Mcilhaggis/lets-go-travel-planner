@@ -1,13 +1,20 @@
 language: node_js
-node_js: "12"
 branches:
   only:
-    - master
-    - main
+  - master
+node_js:
+- stable
+npm: true
 cache:
   directories:
-    - node_modules
-services:
-  - mysql
-before_install:
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS testdb;'
+  - node_modules
+deploy:
+  provider: heroku
+  api_key:
+    secure: S141b6KLozRQjGXZbk1ouT4XePhbBkHP64wyGw7tLddkWEDzcDISphTtOypEGEpfR/GSZYL3OmcRAfkPVQMyDJ2UML9x9ZRljVz8jtGOtrBYWnIX/hBh97LHw2B45sFtSXnaovlWAstn1hHVB6yS85S6ljykQolEuaEG9MtQ49u6TacoH5w+W3wacNxYvWACD4P6jmvcrPk6Y+8pIRXwvFRzzNXYWPjRNdOF5Nd1Cw9+dh+mHRm9nkiimW3sFOBQZfwjmm28i2x3oxS6mkeOUj6KgGjps7wYj5/qRrrTW7kO7afoTFRRYdLhxpcaNm9WUkkk2XzcV1L46IirQ6Hs2dKi67Z87h0c/KqnTi+86k0tchsVbSOKu+76kzGX8LNTcTepQxKtEgGDvgKM0+uCxR03Lz0HiXlolqZdZh0O3PPDw/tx55xyNYOSYd/8/50pl4P5ZXIPwlRO/nQHy1YaTt4/XnyOOY6I2LWt/G6HCzWnCO6Ze0ISYdeN4ixupToS3nGT/+8KrJPBk7B1kFn4gM4WjJ1f56ATjOvm8ccZ8tw14aQywCnOxxN9UdyaYUpdp1zJ3G4bBMDQSD51frmiL179E47X4pO2ajxuVl2ItgA+YxVKmlMNYN7f5vz9biEzodwssc0dZHOMlHeQhJtO5o8TFZp8cDYiVvBHPeQBgXs=
+  app: stormy-springs-60842
+  on:
+    repo: Mcilhaggis/lets-go-travel-planner
+  skip_cleanup: 'true'
+
+
