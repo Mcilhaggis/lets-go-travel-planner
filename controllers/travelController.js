@@ -252,10 +252,11 @@ router.put("/api/itinerary/:activityID", (req, res) => {
 // Call Api function from Class 'zomato'
 router.get("/api/restaurants", (req, res) => {
   const allRestaurnt = {};
-
   zomato.getZomatoCityId(req.query.city).then((cityId) => {
     zomato.getZomatoRestaurant(cityId).then((result) => {
-      allRestaurnt.restaurants = result.restaurants.map((o) => (restaurant = {
+      const shuffled = result.restaurants.sort(() => 0.5 - Math.random());
+      const selected = shuffled.slice(0, 8);
+      allRestaurnt.restaurants = selected.map((o) => (restaurant = {
         name: o.restaurant.name,
         url: o.restaurant.url,
         address: o.restaurant.location.address,
@@ -307,7 +308,6 @@ router.get("/api/activity", (req, res) => {
       amadeus.getActivityResult(token, geocode).then((activities) => {
         const shuffled = activities.data.sort(() => 0.5 - Math.random());
         const selected = shuffled.slice(0, 8);
-        console.log(selected);
         const allActivities = {
           activities: selected.map((o) => [
             (Activity = {

@@ -27,7 +27,7 @@ function getZomatoRestaurant(cityId) {
   return fetch(
     "https://developers.zomato.com/api/v2.1/search?entity_id=" +
             cityId +
-            "&entity_type=city&start=1&count=3", {
+            "&entity_type=city&start=1&count=30", {
 
       headers: {
         "user-key": process.env.API_KEY,
