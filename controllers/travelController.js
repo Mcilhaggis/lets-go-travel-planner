@@ -252,10 +252,11 @@ router.put("/api/itinerary/:activityID", (req, res) => {
 // Call Api function from Class 'zomato'
 router.get("/api/restaurants", (req, res) => {
   const allRestaurnt = {};
-
   zomato.getZomatoCityId(req.query.city).then((cityId) => {
     zomato.getZomatoRestaurant(cityId).then((result) => {
-      allRestaurnt.restaurants = result.restaurants.map((o) => (restaurant = {
+      const shuffled = result.restaurants.sort(() => 0.5 - Math.random());
+      const selected = shuffled.slice(0, 8);
+      allRestaurnt.restaurants = selected.map((o) => (restaurant = {
         name: o.restaurant.name,
         url: o.restaurant.url,
         address: o.restaurant.location.address,
@@ -281,7 +282,7 @@ router.get("/api/restaurants", (req, res) => {
 router.get("/api/restaurantReviews", (req, res) => {
   zomato.getRestaurantReview(req.query.res_id).then((data) => {
     const onlyTwoData = data.user_reviews.slice(0, 2);
-    // console.log(onlyTwoData);
+    console.log(onlyTwoData);
     const allReviews = {
       reviews: onlyTwoData.map((o) => (review = {
         res_id: req.query.res_id,
@@ -305,10 +306,10 @@ router.get("/api/activity", (req, res) => {
     amadeus.getTokenActivities().then((token) => {
       // Get amadeus Activities
       amadeus.getActivityResult(token, geocode).then((activities) => {
-        const act = activities.data.slice(0, 3);
-        // console.log(act);
+        const shuffled = activities.data.sort(() => 0.5 - Math.random());
+        const selected = shuffled.slice(0, 8);
         const allActivities = {
-          activities: act.map((o) => [
+          activities: selected.map((o) => [
             (Activity = {
               name: o.name,
               description: o.shortDescription,
