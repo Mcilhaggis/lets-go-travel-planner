@@ -1,22 +1,22 @@
 
-require('dotenv').config()
+require("dotenv").config();
 const fetch = require("node-fetch");
 
 
 
 function getActivity(city) {
-    return fetch(
-            "https://developers.zomato.com/api/v2.1/locations?query=" + city, {
-                headers: {
-                    "User-Key": process.env.API_KEY,
-                },
-            }
-        )
-        .then((response) => response.json())
-        .then((data) => {
-            let latitude = data.location_suggestions.map((o) => o.latitude);
-            let longitude = data.location_suggestions.map((o) => o.longitude);
-            const geocode = [].concat(latitude, longitude);
+  return fetch(
+    "https://developers.zomato.com/api/v2.1/locations?query=" + city, {
+      headers: {
+        "User-Key": process.env.API_KEY,
+      },
+    }
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      const latitude = data.location_suggestions.map((o) => o.latitude);
+      const longitude = data.location_suggestions.map((o) => o.longitude);
+      const geocode = [].concat(latitude, longitude);
 
       return geocode;
     });
