@@ -2,7 +2,8 @@
 require("dotenv").config();
 const fetch = require("node-fetch");
 
-
+const CLIENT_ID=process.env.CLIENT_ID;
+const CLIENT_SECRET=process.env.CLIENT_SECRET;
 
 function getActivity(city) {
   return fetch(
@@ -28,7 +29,7 @@ function getTokenActivities() {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    body: "grant_type=client_credentials&client_id=LPEc20EhzePh5QWWfhu1JSGIlVm5re4d&client_secret=oG7BvAKRNDtkwOVS",
+    body: "grant_type=client_credentials&client_id=" + CLIENT_ID + "&client_secret=" + CLIENT_SECRET
   })
     .then((response) => response.json())
     .then((data) => {
