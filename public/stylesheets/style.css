@@ -39,5 +39,14 @@ body {
  }
 
  .tPlanner{
+     margin-top: -50px;
      font-size: 1.5em;
+ }
+
+ .mapPoint{
+     height: 100px;
+     width: auto;
+     display: absolute;
+     margin-left: 350px;
+     margin-top: -30px;
  }
