@@ -1,7 +1,4 @@
 language: node_js
-branches:
-  only:
-  - main
 node_js:
 - stable
 npm: true
@@ -14,5 +11,6 @@ deploy:
     secure: To/wjDk/BoQvxDru2enYH8TRhtZOB1CGhN6AEPc3tDbb3ejyv2r+wrBt+PuMHKwlEVto+xyz1DfqmwdFK1lNB0NHQwiyrEjut5m+kR5QADCoK7szGB93ZREAJOqokUEOzTuqR0cGR7x6gIMOicW5fhf3mboZFWQeJkZmp/LDaP0u9tVm9uZyZdUY1sgTBMMMpZZpcmxuN5gwNTat2UUqhewlVpIUQH15CZgwBFAOz43Z8hOmTKYI8y9KQPcGSBQ+qA0iz7c8+xzlCZ/HHxNv/VinaRYpMR8KIrjDrfrv1sEQN1VuZQko9TAb6Y8zD7MiVQvBETkaW5fN9VLAGEloyqponutsj2+NMKYOMqtn1jmjOq+3816E1dCwJHnQZnqYanKdf9TwrY89V7ACLx/ERkB4tnRezIt2TlDUajqn1gLtdvBNXgfkTvxRCUjg+J9D4IqeoR4BvWYHEyvFYV6Gltbbhu+WnEdReFVTeZcwEoGehPmJAjTVGFx5LNLXad2GEZRL5MnAbOBgMEhVZ9Sc8+++EA9giaMr2n45A/S38pc9Wc6UizQwfnerJFABb3lw9yc9V6irBzchJYtpNMSZ2JfCi2u0cDS9Z/A+sytRUxxcChdCJj4Yp9KNCGbIO69VuTe/5fkUWSzg/Rhazg9ynDq7vUu4yKDDXYvajHN0ucA=
   app: stormy-springs-60842
   on:
+    all_branches: 'true'
     repo: Mcilhaggis/lets-go-travel-planner
   skip_cleanup: 'true'
