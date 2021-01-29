@@ -88,6 +88,10 @@ body {
     border-radius: 6px;
 }
 
-.navbar-brand, .colName{
+.navbar-brand, .colName, .rNameCol, .aNameCol, .cityName, .modalName, .myNotes{
     font-family: 'La Belle Aurore', cursive;
+}
+
+.myNotes{
+    font-size: 1.5em;
 }

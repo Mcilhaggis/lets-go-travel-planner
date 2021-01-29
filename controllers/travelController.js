@@ -102,7 +102,6 @@ router.get("/api/user_data", (req, res) => {
 //Route for export
 // GET route for getting all of the saved itenrary items
 router.get("/api/itinerary/restaurant", (req, res) => {
-  console.log(req.user.id);
   // findAll returns all entries for a table when used with no options
   db.Itinerary.findAll({
     attributes: ["id", "destination", "restaurantName", "restaurantWebsite", "restaurantAddress", "restaurantPhone", "restaurantPhoto", "comments"],
@@ -121,7 +120,6 @@ router.get("/api/itinerary/restaurant", (req, res) => {
 });
 
 router.get("/api/itinerary", (req, res) => {
-  console.log(req.user.id);
   // findAll returns all entries for a table when used with no options
   db.Itinerary.findAll({
     attributes: ["id", "destination", "activityName", "activityPhoto", "activityDescription", "activityWebsite", "comments"],
@@ -142,7 +140,6 @@ router.get("/api/itinerary", (req, res) => {
 // SELECT * FROM post WHERE authorId = 12 AND status = 'active';
 // POST route for saving a new itinerary item
 router.post("/api/itinerary/restaurant", (req, res) => {
-  console.log(req.body);
   // Create takes an argument of an object describing the item we want to
   // Insert into our table. We pass in an object with a text and complete property.
 
@@ -171,7 +168,6 @@ router.post("/api/itinerary/restaurant", (req, res) => {
 
 // POST route for saving a new itinerary item
 router.post("/api/itinerary", (req, res) => {
-  console.log(req.body);
   // Create takes an argument of an object describing the item we want to
   // Insert into our table. We pass in an object with a text and complete property.
 
@@ -201,7 +197,6 @@ router.post("/api/itinerary", (req, res) => {
 
 // Deleting a previously saved restaurant
 router.delete("/api/itinerary/:restaurantID", (req, res) => {
-  console.log(req.params.restaurantID);
   // We just have to specify which itinerary item we want to destroy with "where"
   db.Itinerary.destroy({
     where: {

@@ -17,15 +17,15 @@
 <section class="container my-5 headerImage">
   <div class="row">
     {{!-- Restaurant Column --}}
-    <div class="col my-5 mx-3 border border-dark rounded-lg">
-      <h3 class="text-center font-weight-bold my-3">Restaurant</h3>
+    <div class="col my-5 mx-3 border border-dark rounded-lg ">
+      <h3 class="text-center font-weight-bold my-3 rNameCol">Restaurant</h3>
       <ul class="my-5" id="rNames">
 
       </ul>
     </div>
     {{!-- Activity Column --}}
-    <div class="col my-5 mx-3 border border-dark rounded-lg">
-      <h3 class="text-center font-weight-bold my-3">Activity</h3>
+    <div class="col my-5 mx-3 border border-dark rounded-lg ">
+      <h3 class="text-center font-weight-bold my-3 aNameCol">Activity</h3>
       <ul class="my-5" id="aNames">
       
       </ul>
@@ -39,7 +39,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h6 class="modal-title" id="modalRestaurantName"></h5>
+        <h4 class="modal-title modalName" id="modalRestaurantName"></h4>
         <button type="button" class="close closeModal" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -50,11 +50,12 @@
         <p id="modalRestaurantWebsite"></p>
         <p>
         <img id="modalRestaurantPhoto" alt="image of item" class="img-fluid">
+        <p class="myNotes">My notes:</p>
         <textarea id="modalRestaurantComment"  style="min-width: 100%" placeholder="Write your comments here" class="form-control" rows="3"></textarea>
         <p id="savedRestaurantComments"></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary updateRestaurant">Save changes</button>
+        <button type="button" class="btn btn-light updateRestaurant">Save changes</button>
       </div>
     </div>
   </div>
