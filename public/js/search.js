@@ -158,6 +158,7 @@ $(document).ready(() => {
   $("#create-form").on("submit", (event) => {
     event.preventDefault();
     cityName = ca.value.trim();
+    cityName = cityName.charAt(0).toUpperCase() + cityName.slice(1);
     console.log(ca.value.trim());
     getRestaurantAPI(cityName);
     getActivityResultAPI(cityName);

@@ -96,6 +96,9 @@ router.get("/api/user_data", (req, res) => {
 });
 
 
+//
+
+
 //ITINERARY API ROUTES
 //Route for export
 // GET route for getting all of the saved itenrary items
@@ -103,7 +106,7 @@ router.get("/api/itinerary/restaurant", (req, res) => {
     console.log(req.user.id);
     // findAll returns all entries for a table when used with no options
     db.Itinerary.findAll({
-        attributes: ['id', 'restaurantName', 'restaurantWebsite', 'restaurantAddress', 'restaurantPhone', 'restaurantPhoto', 'comments'],
+        attributes: ['id', 'destination', 'restaurantName', 'restaurantWebsite', 'restaurantAddress', 'restaurantPhone', 'restaurantPhoto', 'comments'],
         where: {
             [Op.and]: [
                 { memberID: req.user.id },
@@ -113,7 +116,8 @@ router.get("/api/itinerary/restaurant", (req, res) => {
                     }
                 }
             ]
-        }
+        },
+
     }).then((result) => res.json(result));
 });
 
@@ -121,7 +125,7 @@ router.get("/api/itinerary", (req, res) => {
     console.log(req.user.id);
     // findAll returns all entries for a table when used with no options
     db.Itinerary.findAll({
-        attributes: ['id', 'activityName', 'activityPhoto', 'activityDescription', 'activityWebsite', 'comments'],
+        attributes: ['id', 'destination', 'activityName', 'activityPhoto', 'activityDescription', 'activityWebsite', 'comments'],
         where: {
             [Op.and]: [
                 { memberID: req.user.id },
