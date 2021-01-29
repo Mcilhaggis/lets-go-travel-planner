@@ -7,7 +7,7 @@ $(document).ready(() => {
     $.get("/api/activity", { city: city }).then((data) => {
       console.log(data);
       const activityColumnName = document.createElement("h2");
-      activityColumnName.textContent = "Activites";
+      activityColumnName.textContent = "Activities";
       activityColumnName.className = "colName";
       activitiesResults.appendChild(activityColumnName);
 

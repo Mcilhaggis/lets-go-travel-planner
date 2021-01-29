@@ -45,8 +45,9 @@ const getRestaurantNames = () => {
       }, Object.create(null));
       //For each item, add the details
       for (const city in destination) {
-        const destinationName = document.createElement("h5");
+        const destinationName = document.createElement("h4");
         destinationName.textContent = `${city}`;
+        destinationName.className = "cityName";
         rNames.appendChild(destinationName);
         destination[city].forEach((item, i) => {
           const destination = item.destination;
@@ -65,9 +66,9 @@ const getRestaurantNames = () => {
           rNameListItem.setAttribute("id", `restaurant-name-${i}`);
           rNameListItem.className = "my-3";
           viewItem.className =
-            "restaurantModalView text-center btn btn-primary btn-sm mx-2";
+            "restaurantModalView text-center btn btn-light btn-sm mx-2";
           deleteItem.className =
-            "deleteRestaurant text-center btn btn-primary btn-sm";
+            "deleteRestaurant text-center btn btn-light btn-sm";
           viewItem.textContent = "View";
           deleteItem.textContent = "Delete";
           viewItem.setAttribute("data-id-target", `${i}`);
@@ -101,7 +102,8 @@ const getActivityNames = () => {
         return r;
       }, Object.create(null));
       for (const city in destination) {
-        const destinationName = document.createElement("h5");
+        const destinationName = document.createElement("h4");
+        destinationName.className = "cityName";
         destinationName.textContent = `${city}`;
         aNames.appendChild(destinationName);
         destination[city].forEach((item, i) => {
@@ -121,9 +123,9 @@ const getActivityNames = () => {
           aNameListItem.setAttribute("id", `activity-name-${i}`);
           aNameListItem.className = "my-3";
           viewItem.className =
-            "activityModalView text-center btn btn-primary btn-sm mx-2";
+            "activityModalView text-center btn btn-light btn-sm mx-2";
           deleteActivity.className =
-            "deleteActivity text-center btn btn-primary btn-sm";
+            "deleteActivity text-center btn btn-light btn-sm";
           viewItem.textContent = "View";
           deleteActivity.textContent = "Delete";
           viewItem.setAttribute("data-id-target", `${i}`);
