@@ -1,7 +1,5 @@
 language: node_js
-branches:
-  only:
-  - main
+all_branches: true.
 node_js:
 - stable
 npm: true
