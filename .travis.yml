@@ -1,5 +1,5 @@
 language: node_js
-all_branches: 'true'
+  all_branches: true
 node_js:
 - stable
 npm: true

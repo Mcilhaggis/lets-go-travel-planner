@@ -33,13 +33,18 @@ body {
     -webkit-box-orient: vertical;
  }
 
+ .titleContainer{
+    display: grid;
+    place-items: center;
+ }
  .logoName{
     font-size: 10rem;
     font-family: 'La Belle Aurore', cursive;
  }
 
  .tPlanner{
-     margin-top: -50px;
+     margin-top: -60px;
+     margin-left: -150px;
      font-size: 1.5em;
  }
 
@@ -47,6 +52,6 @@ body {
      height: 150px;
      width: auto;
      display: absolute;
-     margin-left: 150px;
-     margin-top: -80px;
+     margin-left: 120px;
+     margin-top: -45px;
  }
