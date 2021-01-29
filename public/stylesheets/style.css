@@ -37,6 +37,7 @@ body {
      margin-top: 80px;
     display: grid;
     place-items: center;
+    margin-bottom: -80px;
  }
  .logoName{
     font-size: 10rem;
