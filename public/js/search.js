@@ -177,6 +177,7 @@ $(document).ready(() => {
     $("#ca").val("");
     activitiesResults.innerHTML = "";
     restaurantsResults.innerHTML = "";
+  
   });
 
   // Click function to grab the rendered restaurant data
