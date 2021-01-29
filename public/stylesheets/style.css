@@ -88,6 +88,6 @@ body {
     border-radius: 6px;
 }
 
-.navbar-brand{
+.navbar-brand, .colName{
     font-family: 'La Belle Aurore', cursive;
 }
