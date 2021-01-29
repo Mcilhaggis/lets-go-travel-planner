@@ -6,9 +6,15 @@ $(document).ready(() => {
   function getActivityResultAPI(city) {
     $.get("/api/activity", { city: city }).then((data) => {
       console.log(data);
+      const activityColumnName = document.createElement("h2");
+      activityColumnName.textContent = "Activites";
+      activityColumnName.className = "colName";
+      activitiesResults.appendChild(activityColumnName);
+
+
       for (let i = 0; i < data.activities.length; i++) {
         // view activity name
-        const activitiesName = document.createElement("h4");
+        const activitiesName = document.createElement("h5");
         activitiesName.setAttribute("id", `activity-${i}`);
         activitiesResults.appendChild(activitiesName);
         activitiesName.textContent = data.activities[i][0].name;
@@ -57,9 +63,15 @@ $(document).ready(() => {
   function getRestaurantAPI(city) {
     $.get("/api/restaurants", { city: city }).then((data) => {
       console.log(data);
+      //Adding name to column once search is submitted
+      const restaurantColumnName = document.createElement("h2");
+      restaurantColumnName.textContent = "Restaurants";
+      restaurantColumnName.className = "colName";
+      restaurantsResults.appendChild(restaurantColumnName);
+
       for (let i = 0; i < data.restaurants.length; i++) {
         // view restaurant name
-        const restaurantsName = document.createElement("h4");
+        const restaurantsName = document.createElement("h5");
         restaurantsName.setAttribute("id", `restaurant-${i}`);
         restaurantsResults.appendChild(restaurantsName);
         restaurantsName.textContent = data.restaurants[i].name;
@@ -165,6 +177,7 @@ $(document).ready(() => {
     $("#ca").val("");
     activitiesResults.innerHTML = "";
     restaurantsResults.innerHTML = "";
+  
   });
 
   // Click function to grab the rendered restaurant data
