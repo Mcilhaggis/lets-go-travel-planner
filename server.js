@@ -46,3 +46,6 @@ db.sequelize.sync().then(() => {
     });
 });
 // { alter: { drop: false } }
+
+
+// test
