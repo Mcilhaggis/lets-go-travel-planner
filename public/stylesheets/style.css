@@ -34,7 +34,7 @@ body {
  }
 
  .titleContainer{
-     margin-top: 50px;
+     margin-top: 80px;
     display: grid;
     place-items: center;
  }
@@ -55,4 +55,8 @@ body {
      display: absolute;
      margin-left: -55px;
      margin-top: -55px;
+ }
+
+ .headerImage {
+     background
  }
