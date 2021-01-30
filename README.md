@@ -45,8 +45,17 @@ The application was developed using the following technologies:
 
 ## Screenshot
 
-To be added. 
-![]()
+Homepage 
+![](public/image/Screenshot1.PNG)
+
+Search Results
+![](public/image/Screenshot3.PNG)
+
+View Itinerary
+![](public/image/Screenshot2.PNG)
+
+View Details 
+![](public/image/Screenshot4.PNG)
 
 ## Installation
 
@@ -58,7 +67,22 @@ git clone https://github.com/Mcilhaggis/lets-go-travel-planner.git
 
 ## Usage
 
-First, run the below command to install the required package:
+First, create the following file in the root of the project:
+```
+.env
+```
+Then, within this file you will need to add your API keys and Amadeus API secret after the "="
+```
+API_KEY= (YOUR ZOMATO API KEY)
+CLIENT_ID= (YOUR AMADEUS API KEY)
+CLIENT_SECRET= (YOUR AMADEUS API SECRET KEY)
+```
+For more information on how to obtain the keys, please visit the websites below: <br />
+https://developers.amadeus.com/ <br />
+https://developers.zomato.com/api <br />
+
+
+Then, run the below command to install the required package:
 
 ```bash
 npm install
