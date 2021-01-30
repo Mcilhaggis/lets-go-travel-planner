@@ -45,10 +45,13 @@ const getRestaurantNames = () => {
       }, Object.create(null));
       //For each item, add the details
       for (const city in destination) {
-        const destinationName = document.createElement("h5");
+        const destinationName = document.createElement("h4");
         destinationName.textContent = `${city}`;
+        destinationName.className = "cityName";
         rNames.appendChild(destinationName);
         destination[city].forEach((item, i) => {
+          console.log(i);
+          console.log(item)
           const destination = item.destination;
           const id = item.id;
           const restaurantName = item.restaurantName;
@@ -65,13 +68,13 @@ const getRestaurantNames = () => {
           rNameListItem.setAttribute("id", `restaurant-name-${i}`);
           rNameListItem.className = "my-3";
           viewItem.className =
-            "restaurantModalView text-center btn btn-primary btn-sm mx-2";
+            "restaurantModalView text-center btn btn-light btn-sm mx-2";
           deleteItem.className =
-            "deleteRestaurant text-center btn btn-primary btn-sm";
+            "deleteRestaurant text-center btn btn-light btn-sm";
           viewItem.textContent = "View";
           deleteItem.textContent = "Delete";
-          viewItem.setAttribute("data-id-target", `${i}`);
-          deleteItem.setAttribute("data-id-target", `${i}`);
+          viewItem.setAttribute("data-id-target", `${item.id}`);
+          deleteItem.setAttribute("data-id-target", `${item.id}`);
           rNameListItem.textContent = `${restaurantName}`;
 
           //Appending elements to the page
@@ -101,7 +104,8 @@ const getActivityNames = () => {
         return r;
       }, Object.create(null));
       for (const city in destination) {
-        const destinationName = document.createElement("h5");
+        const destinationName = document.createElement("h4");
+        destinationName.className = "cityName";
         destinationName.textContent = `${city}`;
         aNames.appendChild(destinationName);
         destination[city].forEach((item, i) => {
@@ -121,13 +125,13 @@ const getActivityNames = () => {
           aNameListItem.setAttribute("id", `activity-name-${i}`);
           aNameListItem.className = "my-3";
           viewItem.className =
-            "activityModalView text-center btn btn-primary btn-sm mx-2";
+            "activityModalView text-center btn btn-light btn-sm mx-2";
           deleteActivity.className =
-            "deleteActivity text-center btn btn-primary btn-sm";
+            "deleteActivity text-center btn btn-light btn-sm";
           viewItem.textContent = "View";
           deleteActivity.textContent = "Delete";
-          viewItem.setAttribute("data-id-target", `${i}`);
-          deleteActivity.setAttribute("data-id-target", `${i}`);
+          viewItem.setAttribute("data-id-target", `${item.id}`);
+          deleteActivity.setAttribute("data-id-target", `${item.id}`);
           aNameListItem.textContent = `${activityName}`;
 
           //Appending activity items to the page dynamically
@@ -149,7 +153,7 @@ getActivityNames();
 // Show the modal to the user when view button is clicked
 $(document).on("click", ".restaurantModalView", e => {
   e.preventDefault();
-  restaurantID = $(`#restaurant-name-${e.target.dataset.idTarget}`).attr("sql");
+  restaurantID = e.target.dataset.idTarget;
 
   fetch("/api/itinerary/restaurant", {
     method: "GET",
@@ -220,7 +224,7 @@ $(document).on("click", ".closeModal", event => {
 // Show the modal to the user when view button is clicked
 $(document).on("click", ".activityModalView", e => {
   e.preventDefault();
-  activityID = $(`#activity-name-${e.target.dataset.idTarget}`).attr("sql");
+  activityID = e.target.dataset.idTarget;
 
   fetch("/api/itinerary", {
     method: "GET",
@@ -281,32 +285,26 @@ $(document).on("click", ".closeModal", event => {
 // RESTAURANT
 $(document).on("click", ".deleteRestaurant", e => {
   e.preventDefault();
-  const restaurantID = $(`#restaurant-name-${e.target.dataset.idTarget}`).attr(
-    "sql"
-  );
+  const restaurantID = e.target.dataset.idTarget;
   fetch(`/api/itinerary/${restaurantID}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json"
     }
   }).then(console.log("item deleted"));
-  $("#rNames").empty();
-  getRestaurantNames();
+  location.reload();
 });
 
 // DELETE ROUTE
 // ACTIVITY
 $(document).on("click", ".deleteActivity", e => {
   e.preventDefault();
-  const activityID = $(`#activity-name-${e.target.dataset.idTarget}`).attr(
-    "sql"
-  );
+  const activityID = e.target.dataset.idTarget;
   fetch(`/api/itinerary/${activityID}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json"
     }
   }).then(console.log("item deleted"));
-  $("#aNames").empty();
-  getActivityNames();
+  location.reload();
 });
