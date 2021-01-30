@@ -51,7 +51,7 @@ const getRestaurantNames = () => {
         rNames.appendChild(destinationName);
         destination[city].forEach((item, i) => {
           console.log(i);
-          console.log(item)
+          console.log(item);
           const destination = item.destination;
           const id = item.id;
           const restaurantName = item.restaurantName;
