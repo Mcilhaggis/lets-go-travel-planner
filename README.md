@@ -71,7 +71,7 @@ First, create the following file in the root of the project:
 ```
 .env
 ```
-Then, within this file you will need to add your API keys and Amadeus API secret after the "=".
+Then, within this file you will need to add your API keys and Amadeus API secret after the "="
 ```
 API_KEY= (YOUR ZOMATO API KEY)
 CLIENT_ID= (YOUR AMADEUS API KEY)
