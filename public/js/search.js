@@ -5,7 +5,6 @@ $(document).ready(() => {
   // Api request to recieve activity data
   function getActivityResultAPI(city) {
     $.get("/api/activity", { city: city }).then((data) => {
-      console.log(data);
       const activityColumnName = document.createElement("h2");
       activityColumnName.textContent = "Activities";
       activityColumnName.className = "colName";
@@ -62,7 +61,6 @@ $(document).ready(() => {
   // Api request to recieve restaurant data
   function getRestaurantAPI(city) {
     $.get("/api/restaurants", { city: city }).then((data) => {
-      console.log(data);
       //Adding name to column once search is submitted
       const restaurantColumnName = document.createElement("h2");
       restaurantColumnName.textContent = "Restaurants";
@@ -146,7 +144,7 @@ $(document).ready(() => {
       data: { res_id: res_id },
       success: function(reviewsResult) {
         for (let i = 0; i < reviewsResult.reviews.length; i++) {
-          console.log(reviewsResult);
+
           // Display Rating Text
           const restaurantRatingText = document.createElement("p");
           restaurantRatingText.textContent =
@@ -207,7 +205,6 @@ $(document).ready(() => {
       restaurantWebsite: restaurantWebsite,
       restaurantPhoto: restaurantPhoto,
     };
-    console.log(itineraryData);
     fetch("/api/itinerary/restaurant", {
       method: "POST",
       headers: {
@@ -220,7 +217,6 @@ $(document).ready(() => {
   // // Click function to grab the rendered activity data
   $(document).on("click", ".aSave", (event) => {
     event.preventDefault();
-    console.log("aSave being clicked");
     const activityName = document.querySelector(
       `#activity-${event.target.dataset.idTarget}`
     ).textContent;
@@ -241,7 +237,6 @@ $(document).ready(() => {
       activityDescription: activityDescription,
       activityWebsite: activityWebsite,
     };
-    console.log(itineraryData);
     fetch("/api/itinerary", {
       method: "POST",
       headers: {

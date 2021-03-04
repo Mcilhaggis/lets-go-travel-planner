@@ -33,7 +33,7 @@ $(document).ready(() => {
         // If there's an error, log the error
       })
       .catch((err) => {
-        console.log("this is the error" + err);
+        // console.log("this is the error" + err);
       });
   }
 });

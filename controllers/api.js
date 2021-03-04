@@ -12,7 +12,6 @@ module.exports = function (app) {
         // Get amadeus Activities
         amadeus.getActivityResult(token, geocode).then((activities) => {
           const act = activities.data.slice(0, 3);
-          // console.log(act);
           const allActivities = {
             activities: act.map((o) => [
               (Activity = {
@@ -25,13 +24,8 @@ module.exports = function (app) {
               }),
             ]),
           };
-          console.log(url);
-          console.log(allActivities);
           //For Testing
           res.send(allActivities);
-
-          // // ==== PREPARED FOR HANDLEBARS=====
-          // res.render('result', {allActivities});
         });
       });
     });
@@ -40,7 +34,6 @@ module.exports = function (app) {
   // Call Api function from Class 'zomato'
   app.get("/api/restaurants", (req, res) => {
     zomato.getZomatoRestaurant(req.query.city).then((result) => {
-      // console.log(result);
       const allRestaurnt = {
         restaurants: result.restaurants.map((o) => [
           (restaurant = {
@@ -57,9 +50,6 @@ module.exports = function (app) {
 
       // ==== TESTING ON result.js ====
       res.send(allRestaurnt);
-
-      // // ==== PREPARED FOR HANDLE_BAR=====
-      // res.render('result', {allRestaurnt});
     });
   });
 };
