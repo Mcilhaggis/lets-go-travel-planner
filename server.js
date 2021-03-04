@@ -2,6 +2,11 @@
 const express = require("express");
 const session = require("express-session");
 
+const compression = require("compression");
+
+ 
+// add all routes
+
 // Requiring passport as we've configured it
 const passport = require("./config/passport");
 
@@ -11,6 +16,9 @@ const db = require("./models");
 
 // Creating express app and configuring middleware needed for authentication
 const app = express();
+// compress all responses
+app.use(compression());
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
@@ -45,5 +53,5 @@ db.sequelize.sync().then(() => {
     );
   });
 });
-// { alter: { drop: false } }
-//test
+
+
